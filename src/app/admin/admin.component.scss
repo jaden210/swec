@@ -1,0 +1,104 @@
+.background {
+  background-color: white;
+  width: 600px;
+  max-width: calc(100vw - 16px);
+  margin: 24px auto;
+  text-align: center;
+}
+
+.day {
+  .day-name {
+    font-size: 28px;
+    text-align: start;
+    font-weight: bold;
+    margin: 24px 0;
+  }
+  .block {
+    padding: 12px 24px;
+    box-sizing: border-box;
+    border-top: 1px dashed #f0f0f0;
+    display: flex;
+    flex-wrap: wrap;
+    .time-name {
+      text-align: start;
+      opacity: .87;
+    }
+    .appointment {
+      min-width: 250px;
+      margin-top: 12px;
+      margin-left: 12px;
+      border: 1px solid;
+      padding: 12px;
+      border-radius: 8px;
+      flex: 1;
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .a-name {
+          font-size: 24px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+      }
+      mat-form-field {
+        width: 100%;
+        margin-top: 8px;
+      }
+    }
+  }
+}
+
+.expense {
+  width: 100%;
+  margin-top: 12px;
+  border: 1px solid;
+  padding: 12px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  flex: 1;
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .e-img {
+      height: 40px;
+    }
+  }
+  mat-form-field {
+    width: 100%;
+    margin-top: 8px;
+  }
+}
+
+
+
+.image-viewer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,.78);
+  padding: 24px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .close {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 102;
+  }
+  .more {
+    position: absolute;
+    top: 24px;
+    right: 82px;
+  }
+}

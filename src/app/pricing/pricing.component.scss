@@ -1,0 +1,14 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 12px;
+  font-family: 'Comic Neue', cursive;
+}
+
+.price {
+  font-size: 60px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}

@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Select a Location</h1>
+<mat-dialog-content style="max-width: 540px">
+  <mat-action-list>
+    <button
+      *ngFor="let location of locations"
+      mat-list-item
+      [mat-dialog-close]="location"
+    >
+      {{ location.locationName }}
+    </button>
+  </mat-action-list>
+</mat-dialog-content>

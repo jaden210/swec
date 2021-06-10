@@ -1,0 +1,50 @@
+<ng-container *ngIf="!createAccountView; else createView">
+  <div mat-dialog-content>
+    <div id="progress-bar-wrapper">
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="loading"
+      ></mat-progress-bar>
+    </div>
+    <img id="logo" src="/assets/otLogo.png" />
+    <div id="error" *ngIf="error">
+      {{ error }}
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" />
+    </mat-form-field>
+    <a *ngIf="showResetPassword" (click)="forgotPassword()">
+      Forgot your password?
+    </a>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      id="sign-in"
+      mat-flat-button
+      style="background: #212121; color: white"
+      (click)="signIn()"
+    >
+      Sign In
+    </button>
+    <a mat-dialog-close routerLink="sign-up"> Create an account </a>
+  </div>
+</ng-container>
+
+<ng-template #createView>
+  <h2 mat-dialog-title>How to Join</h2>
+  <div mat-dialog-content>
+    <p>
+      Welcome to LensWindow! If you're trying to join an existing team, please
+      contact your team manager and have them add you. If you're wanting to
+      create a team navigate to the <a (click)="signUp()">Sign Up page</a>
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <a (click)="createAccountView = false"> Go Back </a>
+  </div>
+</ng-template>

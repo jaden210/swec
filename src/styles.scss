@@ -1,0 +1,104 @@
+@use '~@angular/material' as mat;
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+
+
+
+
+$md-c-pink: (
+    50 : #f9f6f7,
+    100 : #f1e9ec,
+    200 : #e8dbe0,
+    300 : #dfccd3,
+    400 : #d8c1c9,
+    500 : #d1b6c0,
+    600 : #ccafba,
+    700 : #c6a6b2,
+    800 : #c09eaa,
+    900 : #b58e9c,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #ffe5ef,
+    A700 : #ffccde,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$kokomo-primary: mat.define-palette($md-c-pink, 500);
+$kokomo-accent: mat.define-palette(mat.$blue-gray-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$kokomo-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$kokomo-theme: mat.define-light-theme(
+  $kokomo-primary,
+  $kokomo-accent,
+  $kokomo-warn
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($kokomo-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  // font-family: Nunito, Roboto, Helvetica Neue, sans-serif;
+  font-family: 'Comic Neue', Nunito, Roboto cursive;
+}
+
+@page {
+  size: auto; /* auto is the initial value */
+  margin: 0mm; /* this affects the margin in the printer settings */
+}
+
+.pink-snackbar {
+  background-color: #e91e63;
+  color: white;
+}
+
+
+
+button {
+  border-radius: 50px !important;
+}
+
+
+
+.mat-bottom-sheet-container {
+  width: 800px;
+  max-width: 100vw;
+  height: 60vh;
+  max-height: 80vh;
+}

@@ -1,0 +1,61 @@
+.toolbar {
+  position: fixed;
+  z-index: 2;
+  background-color: white;
+  box-shadow: none;
+  height: 72px;
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.1);
+  .logo {
+    height: 100%;
+    img {
+      height: 100%;
+      padding: 4px;
+      box-sizing: border-box;
+    }
+  }
+  .logo:focus {
+    outline: 1px dotted #757575;
+  }
+}
+
+.view {
+  display: flex;
+  width: 100vw;
+  height: calc(100vh - 72px);
+  align-items: center;
+  padding: 0 24px;
+  box-sizing: border-box;
+  .image {
+    width: 60vw;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 560px;
+    margin-left: auto;
+  }
+  .form {
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    width: 480px;
+    margin: auto;
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    button {
+      margin-top: 24px;
+    }
+    div.spam {
+      padding: 24px 0;
+      text-align: center;
+    }
+  }
+  .loading-bar {
+    height: 4px;
+    margin-bottom: -4px;
+    width: 100%;
+  }
+}

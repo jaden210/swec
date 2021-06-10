@@ -1,0 +1,26 @@
+<app-toolbar></app-toolbar>
+<!-- <app-feedback></app-feedback> -->
+<!-- <app-chat></app-chat> -->
+<div class="background" [@fadeIn]>
+  <div class="hero-cont">
+    <img class="hero-img" src="/assets/heroImg.png">
+    <h1 class="hero-text">Tans so good, no one will know they were painted on.</h1>
+      <button class="hero-btn" color="primary" (click)="book()" mat-flat-button>Book an Appointment</button>
+  </div>
+  <div class="t-body">
+    <h4 class="t-header">The feeling of a good tan.</h4>
+    <p>Sun tans suck. You spend hours sitting out getting your a** cooked, only to discover you have put on too much sunblock and it was all for nothing or not enough, and yep, you're burnt more than Aunt Catherine's Christmas Turkey.
+      <br><br>Or worse yet. you do a hack job with the sunscreen and end up looking like a zebra (thats not a good thing).
+      <br><br>The solution is simple: 
+      <br><br>Get a spray tan from Red Sand Tans. We color match to get you exactly as dark or light as you want to be. The process is simple and only takes a few minutes, and best of all, you don't have to be worried about getting skin cancer down the road from all that baking you had to do under the sun.</p>
+  </div>
+</div>
+<div class="banner">
+  <div class="b-text">Get the latest news and offers<br> when you sign up for my mailing list!</div>
+  <mat-form-field>
+    <mat-label>email address</mat-label>
+    <input #email matInput (keyup.enter)="signUpMailingList(email.value)" placeholder="user@gmail.com">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="signUpMailingList(email.value)">Sign Up</button>
+</div>
+<footer></footer>

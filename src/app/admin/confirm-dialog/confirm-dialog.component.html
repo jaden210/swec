@@ -1,0 +1,18 @@
+<ng-container>
+  <h1 mat-dialog-title>Delete {{data}}</h1>
+  <div mat-dialog-content>
+    <p>
+      Heads up, this will remove all items tied to this category and all ties to that item. Are you sure you want to continue?
+    </p>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>I want my mommy</button>
+    <button
+      (click)="close(true)"
+      mat-flat-button
+      color="primary"
+    >
+      DELETE
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,21 @@
+.toolbar {
+  z-index: 2;
+  background-color: white;
+  box-shadow: none;
+  height: 72px;
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.1);
+  .logo {
+    height: 90%;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    cursor: pointer;
+    img {
+      height: 100%;
+      box-sizing: border-box;
+    }
+  }
+  .logo:focus {
+    outline: 1px dotted #757575;
+  }
+}

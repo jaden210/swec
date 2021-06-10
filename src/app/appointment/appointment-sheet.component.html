@@ -1,0 +1,56 @@
+<ng-container>
+  <div class="toolbar">
+    <!-- <button mat-icon-button (click)="leave()"><mat-icon>close</mat-icon></button> -->
+    <div class="title">Book an Appointment</div>
+    <!-- <div class="title">Select a day:</div> -->
+    <button (click)="close()" class="post-btn">cancel</button>
+  </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="view" [ngSwitch]="view">
+    <ng-container *ngSwitchCase="'info'">
+      <div class="tab-title">Tell me about you:</div>
+      <mat-form-field appearance="outline">
+        <mat-label>name</mat-label>
+        <input matInput type="text" placeholder="Samantha Best" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>phone number</mat-label>
+        <input matInput type="tel" placeholder="8018458545" [(ngModel)]="number" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || !number || number.length < 10">Next</button>
+    </ng-container>
+    <div *ngSwitchCase="'day'">
+      <div class="tab-title">Select a day:</div>
+      <mat-list *ngIf="days.length">
+        <mat-list-item *ngFor="let day of days" (click)="setDay(day)">
+          {{day | date: 'fullDate'}}
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div *ngSwitchCase="'time'">
+      <div class="tab-title">Select a time:</div>
+      <mat-list>
+        <mat-list-item *ngFor="let time of times" (click)="setTime(time)">
+          {{time | date: 'shortTime'}}
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <ng-container *ngSwitchCase="'confirm'">
+      <div class="tab-title">Does this look good?</div>
+      <div class="tab-title">{{time | date: 'EEEE, MMM d, y, h:mm:ss a'}}</div>
+      <div style="height: 100px;"></div>
+      <button mat-stroked-button color="accent" (click)="back()" class="post-btn">Start Over</button>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px;" (click)="setAppointment()" class="post-btn">Confirm Appointment</button>
+      
+    </ng-container>
+    <div *ngSwitchCase="'done'">
+      <div class="tab-title">We can't wait to see you!</div>
+      <div class="tab-title">add this to your calendar</div>
+      <button mat-stroked-button color="primary" (click)="close()" class="post-btn">Close</button>
+      
+    </div>
+  </div>
+  <div class="row" >
+    
+  </div>
+</ng-container>

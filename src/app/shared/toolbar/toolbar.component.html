@@ -1,0 +1,33 @@
+<mat-toolbar class="toolbar">
+  <div style="flex:1"></div>
+  <div class="logo" routerLink="/home">
+    <img
+    src="/assets/kokomoLogo.png"
+    class="color-logo"
+    aria-label="Kokomo Spray Tans Logo"
+    />
+  </div>
+  <div style="flex:1"></div>
+  <div class="desktop">
+    <!-- <button mat-button class="link" routerLink="/demo">Demo the Product</button>
+    <button mat-button class="link" routerLink="/home" fragment="pricing">
+      Pricing
+    </button>
+    <button mat-button class="link" routerLink="/about-us">About Us</button>
+    <button mat-button class="link" routerLink="/sign-up">Sign Up</button> -->
+    <button mat-button class="link" *ngIf="isLoggedIn" routerLink="/admin" color="accent">
+      admin
+    </button>
+    <!-- <button mat-button class="link" *ngIf="isLoggedIn" (click)="logout()" color="primary">
+      logout
+    </button> -->
+    <!-- <button
+      mat-icon-button
+      class="link"
+      routerLink="/faq"
+      aria-label="Route to common questions page"
+    >
+      <mat-icon>help_outline</mat-icon>
+    </button> -->
+  </div>
+</mat-toolbar>
