@@ -1,0 +1,43 @@
+<ng-container *ngIf="!done; else doneTemp">
+  <h1 mat-dialog-title>Leave a review!</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput placeholder="First name" [(ngModel)]="name" />
+    </mat-form-field>
+    <mat-form-field style="width: 100%;">
+      <textarea
+        matInput
+        placeholder="Review"
+        [(ngModel)]="review"
+        max="400"
+      ></textarea>
+    </mat-form-field>
+    <div class="rating" style="display: flex;">
+      <mat-icon (click)="rating = 1">{{
+        rating > 0 ? "star" : "star_outline"
+      }}</mat-icon>
+      <mat-icon (click)="rating = 2">{{
+        rating > 1 ? "star" : "star_outline"
+      }}</mat-icon>
+      <mat-icon (click)="rating = 3">{{
+        rating > 2 ? "star" : "star_outline"
+      }}</mat-icon>
+      <mat-icon (click)="rating = 4">{{
+        rating > 3 ? "star" : "star_outline"
+      }}</mat-icon>
+      <mat-icon (click)="rating = 5">{{
+        rating > 4 ? "star" : "star_outline"
+      }}</mat-icon>
+    </div>
+    <p class="error" *ngIf="error">{{ error }}</p>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>CANCEL</button>
+    <button mat-button (click)="saveReview()">
+      SUBMIT
+    </button>
+  </div>
+</ng-container>
+<ng-template #doneTemp>
+  <h1>Thanks for the review!</h1>
+</ng-template>

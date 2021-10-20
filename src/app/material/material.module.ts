@@ -24,6 +24,8 @@ import { MatTableModule } from "@angular/material/table";
 import { MatSortModule } from "@angular/material/sort";
 import { MatSliderModule } from "@angular/material/slider";
 import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from "@angular/material/core";
 
 /* These are the angular material components we're using throughout the app */
 
@@ -53,7 +55,9 @@ import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
     MatSortModule,
     MatSliderModule,
     MatBottomSheetModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     MatButtonModule,
@@ -80,7 +84,9 @@ import { MatBottomSheetModule } from "@angular/material/bottom-sheet";
     MatSortModule,
     MatSliderModule,
     MatBottomSheetModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
 })
 export class MaterialModule {}

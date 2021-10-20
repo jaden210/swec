@@ -59,7 +59,7 @@ export class LoginDialogComponent implements OnInit {
       this._signInService.signIn(this.email, this.password).then(
         (uid) => {
           if (uid) this.dialogRef.close(uid);
-          this._router.navigate(["/back-office"]);
+          this._router.navigate(["/admin"]);
         },
         (error) => {
           this.loading = false;
@@ -133,7 +133,7 @@ export class LoginDialogComponent implements OnInit {
     this._signInService.addUserToUserCollection(user).then(
       () => {
         this.dialogRef.close(firebaseUser.uid);
-        this._router.navigate(["/back-office"]);
+        this._router.navigate(["/admin"]);
       },
       (error) => {
         console.error(error);

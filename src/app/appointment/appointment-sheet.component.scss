@@ -6,7 +6,7 @@
   color: #7F626F;
   margin-bottom: 12px;
   .post-btn {
-    background: #4B6584;
+    background: #7F626F;
     color: #ffffff;
     outline: none;
     border: none;
@@ -23,7 +23,7 @@
 
 .view {
   text-align: center;
-  height: calc(100% - 56px);
+  height: calc(100% - 59px);
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -37,6 +37,9 @@
     border: 1px solid #D1B6C0;
     width: 300px;
     border-radius: 8px;
+  }
+  mat-list-item {
+    cursor: pointer;
   }
   mat-form-field {
     width: 250px;

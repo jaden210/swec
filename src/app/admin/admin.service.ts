@@ -8,7 +8,7 @@ import { map, catchError, takeLast, flatMap } from "rxjs/operators";
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import { ILocation, SignInService, User } from "../login/login.service";
-import { Appointment } from "../appointment/appointment-sheet.service";
+import { Appointment, Blackout } from "../appointment/appointment-sheet.service";
 import { Expense } from "./admin.component";
 
 @Injectable()
@@ -26,13 +26,35 @@ export class AdminService {
     return this.db.collection<Expense>("expenses", ref => ref.orderBy("createdAt", "desc")).valueChanges({ idField: "id" });
   }
 
-  public getAppointments(): Observable<Appointment[]> {
-    return this.db.collection<Appointment>("appointments", ref => ref.orderBy("appointment", "asc")).valueChanges({ idField: "id" });
-  }
-
   public getAvailability(): Observable<any> {
     return this.db.collection("availability").valueChanges();
   }
+
+  public getBlackouts(): Observable<any> {
+    return this.db.collection("blackouts").valueChanges();
+  }
+
+  public getGallery(): Observable<any> {
+    return this.db.collection("gallery").valueChanges({idField: "id"});
+  }
+
+  public addImage(data) {
+    return this.db.collection("gallery").add(data);
+  }
+
+  public updateImage(data) {
+    return this.db.doc(`gallery/${data.id}`).set(data);
+  }
+
+  public removeImage(data) {
+    return this.db.doc(`gallery/${data.id}`).delete();
+  }
+  
+    public createBlackout(blackout: Blackout): Promise<any> {
+      return this.db
+        .collection(`blackouts`)
+        .add({ ...blackout });
+    }
 
   public updateAppointment(appointment: Appointment): Promise<any> {
     return this.db
@@ -139,4 +161,13 @@ export enum DisplayType {
   list = "List",
   grid = "Grid",
   detail = "Detail"
+}
+
+export class Gallery {
+
+}
+
+export enum ObjectFit {
+  COVER = "cover",
+  CONTAIN = "contain",
 }

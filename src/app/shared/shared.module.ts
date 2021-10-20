@@ -7,6 +7,7 @@ import { DemoWheelComponent } from "../demo-wheel/demo-wheel.component";
 import { InfoDialog } from "./info-dialog/info-dialog.component";
 import { ToolbarComponent } from "./toolbar/toolbar.component";
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { FooterComponent } from "../footer/footer.component";
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     MaterialModule,
     DragDropModule
   ],
-  declarations: [DemoWheelComponent, InfoDialog, ToolbarComponent],
+  declarations: [DemoWheelComponent, InfoDialog, ToolbarComponent, FooterComponent],
   exports: [
     CommonModule,
     FormsModule,
@@ -26,6 +27,7 @@ import { DragDropModule } from "@angular/cdk/drag-drop";
     DemoWheelComponent,
     InfoDialog,
     ToolbarComponent,
+    FooterComponent,
     DragDropModule
   ],
 })

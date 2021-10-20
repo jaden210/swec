@@ -1,8 +1,12 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AboutComponent } from "./about/about.component";
 import { AuthGuard } from "./auth.guard";
+import { ContactsComponent } from "./contacts/contacts.component";
+import { GalleryComponent } from "./gallery/gallery.component";
 import { HomeComponent } from "./home/home.component";
 import { PricingComponent } from "./pricing/pricing.component";
+import { SmsComponent } from "./sms/sms.component";
 
 // Order matters here, first match wins
 const appRoutes: Routes = [
@@ -15,14 +19,33 @@ const appRoutes: Routes = [
     component: PricingComponent,
   },
   {
+    path: "about",
+    component: AboutComponent,
+  },
+  {
+    path: "gallery",
+    component: GalleryComponent,
+  },
+  {path: 'sms', component: SmsComponent, canActivate: [AuthGuard]},
+  {path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard]},
+  {
     path: "faq",
     loadChildren: () => import("./faq/faq.module").then((m) => m.FaqModule),
+  },
+  {
+    path: "prep",
+    loadChildren: () => import("./prep/prep.module").then((m) => m.PrepModule),
   },
   {
     path: "admin",
     loadChildren: () =>
       import("./admin/admin.module").then((m) => m.AdminModule),
       canActivate: [AuthGuard],
+  },
+  {
+    path: "reviews",
+    loadChildren: () =>
+      import("./reviews/reviews.module").then((m) => m.ReviewsModule)
   },
   // {
   //   path: "sign-up",
@@ -44,7 +67,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy' })],
+  imports: [RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'legacy', scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

@@ -41,13 +41,15 @@ export class HomeComponent implements OnInit {
     
   }
 
-  public signUpMailingList(email) {
-    if (email) {
-      this._homeService.addToMailingList(email).then(() => {
+  public signUpContacts(phoneNumber) {
+    if (phoneNumber) {
+      var numberPattern = /\d+/g;
+      let number = phoneNumber.match( numberPattern ).join([]);
+      this._appService.addToContactList(number).then(() => {
         this._dialog.open(InfoDialog, {data: {
           title: "You're in!",
-          body: "Keep an eye on your inbox, we'll reach out to you soon."
-        }})
+          body: "Keep an eye on your texts, we'll reach out to you soon."
+        }});
       });
     }
   }

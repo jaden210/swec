@@ -1,11 +1,14 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { MatBottomSheetRef } from "@angular/material/bottom-sheet";
+import { Component, OnInit, OnDestroy, Inject } from "@angular/core";
+import { MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from "@angular/material/bottom-sheet";
 import { combineLatest, of } from "rxjs";
 import * as firebase from "firebase/app";
 import "firebase/functions";
 import * as moment from "moment";
-import { Appointment, AppointmentService } from "./appointment-sheet.service";
+import { Appointment, AppointmentService, Blackout } from "./appointment-sheet.service";
 import { take } from "rxjs/operators";
+import { AppService } from "../app.service";
+import { Router } from "@angular/router";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 
 @Component({
   selector: "appointment-sheet",
@@ -20,37 +23,61 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
   time;
   appointments: Appointment[] = [];
   availability;
+  blackouts: Blackout[] = [];
   view: string = 'info';
   name;
   number;
+  ig;
+  isAdmin: boolean;
+  adminDate: any;
+  adminTime: any;
+  adminPaid: number;
   
 
   constructor(
     private _bottomSheetRef: MatBottomSheetRef<AppointmentSheetComponent>,
-    private _appointmentService: AppointmentService
+    private _appointmentService: AppointmentService,
+    private _appService: AppService,
+    private _router: Router,
+    @Inject(MAT_BOTTOM_SHEET_DATA) public data: any,
   ) {}
 
   ngOnInit(): void {
+    this.isAdmin = this.data.isAdmin;
     combineLatest([
       this._appointmentService.getAppointments(),
-      this._appointmentService.getAvailability()
+      this._appointmentService.getAvailability(),
+      this._appointmentService.getBlackouts()
     ]).pipe(take(1)).subscribe(results => {
       this.appointments = results[0];
-      this.availability = results[1].available;
+      this.availability = results[1];
+      this.blackouts = results[2];
+      console.log(this.availability);
+      
     });
   }
 
   public buildDays() {
-    if(this.name && this.number && this.number.length > 10) {
-      this.view = 'day';
+    if(this.name && ((this.number && this.number.length >= 10) || this.ig)) {
+      this.view = this.isAdmin ? 'date' : 'day';
       this.days = [];
       for (let index = 0; index <= 15; index++) {
         let day = moment().startOf('day').add(index, "days");
         let aDay = this.availability.find(t => t.day == moment(day).format('dddd').toLowerCase());
-        if (aDay && aDay.isOpen) this.days.push(day);
+        let isBlackout = this.blackouts.some(b => moment(b.day.toDate()).isSame(day, "day"));
+        if (aDay && aDay.isOpen && !isBlackout) this.days.push(day);
       }
       this.loading = false;
     }
+  }
+
+  public setDate() {
+    let [hour, minute] = this.adminTime.split(':');
+    this.time = moment(this.adminDate).set({hour, minute});
+    let appointment = new Appointment();
+    appointment.paid = this.adminPaid;
+    appointment.confirm = true;
+    this.setAppointment(appointment);
   }
 
   public setDay(day) {
@@ -74,15 +101,18 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
     this.buildDays();
   }
 
-  public setAppointment() {
+  public setAppointment(appointment: Appointment = new Appointment()) {
     this.loading = true;
-    let appointment = new Appointment();
+    var numberPattern = /\d+/g;
     appointment.createdAt = new Date();
-    appointment.name = "timmy";
+    appointment.name = this.name;
     appointment.appointment = this.time.toDate();
+    appointment.number = this.number ? this.number.match( numberPattern ).join([]) : null;
+    appointment.ig = this.ig;
     this._appointmentService.createAppointment(appointment).then(() => {
       this.loading = false;
       this.view = 'done';
+      this._appService.addToContactList(appointment.number, appointment.name, appointment.ig)
     })
   }
 
@@ -91,6 +121,19 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+  }
+
+  public addToGoogleCalendar() {
+    window.open(`https://calendar.google.com/calendar/r/eventedit?text=Kokomo+Spray+Tan+Appointment&dates=${moment(this.time).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(this.time).add(30, 'minutes').toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=https://kokomosprays.com&location=1528N+Overland+Trails+Drive+-+Washington,+UT+84780`);
+  }
+
+  public nav() {
+    window.open(`https://goo.gl/maps/QmngHeZR37uyPfQGA`);
+  }
+
+  public prep() {
+    this._router.navigate(['/prep']);
+    this.close();
   }
 
 }

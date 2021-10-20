@@ -8,7 +8,7 @@
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div class="view" [ngSwitch]="view">
     <ng-container *ngSwitchCase="'info'">
-      <div class="tab-title">Tell me about you:</div>
+      <div class="tab-title">{{!isAdmin ? 'Tell us about you:' : 'Enter your clients info'}}</div>
       <mat-form-field appearance="outline">
         <mat-label>name</mat-label>
         <input matInput type="text" placeholder="Samantha Best" [(ngModel)]="name">
@@ -17,8 +17,29 @@
         <mat-label>phone number</mat-label>
         <input matInput type="tel" placeholder="8018458545" [(ngModel)]="number" (keyup.enter)="buildDays()">
       </mat-form-field>
-      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || !number || number.length < 10">Next</button>
+      <mat-form-field appearance="outline">
+        <mat-label>instagram handle</mat-label>
+        <input matInput type="text" placeholder="kokomosprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || (!ig && !number) || (number && number.length < 10)">Next</button>
     </ng-container>
+    <div *ngSwitchCase="'date'">
+      <div class="tab-title">When is/was the appointment?</div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="adminDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="time" [(ngModel)]="adminTime">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="adminPaid">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="setDate()" [disabled]="!adminDate || !adminTime || !adminPaid">Next</button>
+    </div>
     <div *ngSwitchCase="'day'">
       <div class="tab-title">Select a day:</div>
       <mat-list *ngIf="days.length">
@@ -43,12 +64,13 @@
       <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px;" (click)="setAppointment()" class="post-btn">Confirm Appointment</button>
       
     </ng-container>
-    <div *ngSwitchCase="'done'">
+    <ng-container *ngSwitchCase="'done'">
       <div class="tab-title">We can't wait to see you!</div>
-      <div class="tab-title">add this to your calendar</div>
+      <button mat-raised-button (click)="addToGoogleCalendar()" style="color:white" color="primary">Add to Google Calendar</button>
+      <button mat-raised-button (click)="nav()" style="color:white; margin:12px 0" color="primary">Get Directions</button>
+      <button mat-raised-button click="prep()" style="color:white; margin:12px 0" color="primary">See Prep Instructions</button>
       <button mat-stroked-button color="primary" (click)="close()" class="post-btn">Close</button>
-      
-    </div>
+    </ng-container>
   </div>
   <div class="row" >
     

@@ -10,7 +10,7 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "8"
+    "node": "12"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -22,7 +22,10 @@
     "nodemailer": "^6.4.10",
     "request": "^2.88.2",
     "request-promise": "^4.2.5",
-    "stripe": "^8.69.0"
+    "stripe": "^8.69.0",
+    "moment": "^2.29.1",
+    "twilio": "^3.63.0",
+    "moment-timezone": "^0.5.33"
   },
   "devDependencies": {
     "tslint": "^5.12.0",

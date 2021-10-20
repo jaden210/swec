@@ -1,0 +1,44 @@
+<app-toolbar></app-toolbar>
+<div class="background">
+  <mat-form-field>
+    <mat-label>sms body</mat-label>
+    <textarea matInput cdkTextareaAutosize [(ngModel)]="smsBody"></textarea>
+  </mat-form-field>
+</div>
+<table mat-table matSort [dataSource]="contacts">
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</th>
+    <td mat-cell *matCellDef="let user">{{ user?.number }}</td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+    <td mat-cell *matCellDef="let user">
+      {{ user?.name }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="appointments">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Appointments Made</th>
+    <td mat-cell *matCellDef="let user">
+      {{ user?.appointments?.length || 0 }}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="createdAt">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>CreatedAt</th>
+    <td mat-cell *matCellDef="let user">
+      {{ user.createdAt ? (user?.createdAt?.toDate() | date: 'medium') : 'none'}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="button">
+    <th mat-header-cell *matHeaderCellDef>Text</th>
+    <td mat-cell *matCellDef="let user">
+      <a mat-stroked-button color="primary" [href]="'sms://+1' + user.number + '?&body=' + SMS">Text</a>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+  ></tr>
+</table>
+<div style="height: 40vh;"></div>
+<footer></footer>

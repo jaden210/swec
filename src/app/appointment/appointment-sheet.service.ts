@@ -16,7 +16,11 @@ export class AppointmentService {
   }
 
   public getAvailability(): Observable<any> {
-    return this._db.doc("admin/times").valueChanges();
+    return this._db.collection("availability").valueChanges({idField: 'id'});
+  }
+
+  public getBlackouts(): Observable<any> {
+    return this._db.collection("blackouts").valueChanges({idField: 'id'});
   }
 
   public addToMailingList(email: string): Promise<any> {
@@ -35,7 +39,15 @@ export class Appointment {
   createdAt: any;
   appointment: any;
   name: string;
+  number?: string;
+  ig?: string;
   userId?: string;
   confirm?: boolean;
   paid?: number;
+}
+
+
+export class Blackout {
+  createdAt: any;
+  day: any;
 }

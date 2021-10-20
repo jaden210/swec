@@ -1,0 +1,37 @@
+<app-toolbar></app-toolbar>
+<div id="page">
+  <h1>Kokomo reviews from our customers</h1>
+  <div id="heading">
+    <div class="content">
+      <p>
+        We're on a mission to give the very best tans to the very best people<br />
+        See what our customers are saying about Kokomo Spray Tans.
+      </p>
+      <button mat-stroked-button *ngIf="isLoggedIn" color="primary" (click)="addReview()">
+        LEAVE A REVIEW
+      </button>
+    </div>
+  </div>
+  <div class="reviews">
+    <div
+      class="review"
+      *ngFor="let review of reviews"
+    >
+      <div class="flex-col">
+        <h3>{{ review.name }} {{ review.from ? "- " + review.from : "" }}</h3>
+        <p>
+          {{ review.review }}
+        </p>
+        <div class="rating">
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+          <mat-icon>star</mat-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer></footer>

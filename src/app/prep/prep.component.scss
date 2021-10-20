@@ -1,0 +1,47 @@
+.block {
+  max-width: 720px;
+  padding: 40px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 24px auto;
+  position: relative;
+  box-sizing: border-box;
+  min-height: 70vh;
+}
+
+.b-sub-title {
+  text-align: start !important;
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.b-info {
+  text-align: start;
+  width: 100%;
+  margin-bottom: 24px;
+  font-size: 17px;
+}
+
+.b-title {
+  margin-bottom: 24px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.b-card {
+  background: white;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 1px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+a {
+  color: blueviolet;
+  cursor: pointer;
+}
+a:hover {
+  text-decoration: underline;
+}

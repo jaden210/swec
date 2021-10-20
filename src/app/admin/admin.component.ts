@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { SignInService } from "../login/login.service";
-import { Category, DisplayType, Item, AdminService } from "./admin.service";
+import { Category, DisplayType, Item, AdminService, Gallery, ObjectFit } from "./admin.service";
 import { MatDialog } from "@angular/material/dialog";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { EditImageComponent } from "./edit-image/edit-image.component";
@@ -10,9 +10,12 @@ import { Location } from "@angular/common";
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { finalize } from "rxjs/operators";
 import { ConfirmDialog } from "./confirm-dialog/confirm-dialog.component";
-import { Appointment } from "../appointment/appointment-sheet.service";
+import { Appointment, Blackout } from "../appointment/appointment-sheet.service";
 import * as moment from "moment";
 import { trigger, transition, style, animate } from "@angular/animations";
+import { AppService } from "../app.service";
+import { BlackoutDialog } from "./blackout-dialog/blackout-dialog.component";
+import { ImageService } from "./image.service";
 
 @Component({
   selector: "app-admin",
@@ -34,7 +37,10 @@ import { trigger, transition, style, animate } from "@angular/animations";
 export class AdminComponent implements OnInit {
   
   public appointments: Appointment[] = [];
+  public appointmentsSorted: Appointment[] = [];
   public expenses: Expense[] = [];
+  public blackouts: Blackout[] = [];
+  public gallery: Gallery[] = [];
   public availability;
   public days;
   public loading: boolean = false;
@@ -43,18 +49,22 @@ export class AdminComponent implements OnInit {
   public views = [
     "appointments",
     "expenses",
-    "sales"
+    "sales",
+    "gallery"
   ];
   public activeImage = null;
   public totalSalesDollars: number = null;
-
+  public error: string;
+  public editImage;
 
   constructor(
     private _adminService: AdminService,
     private _dialog: MatDialog,
     private _snackBar: MatSnackBar,
     private _signInService: SignInService,
-    private _location: Location
+    private _location: Location,
+    private _appService: AppService,
+    private _imageService: ImageService
   ) {}
 
   ngOnInit() {
@@ -63,12 +73,19 @@ export class AdminComponent implements OnInit {
       this.expenses = expenses;
     });
     combineLatest([
-      this._adminService.getAppointments(),
-      this._adminService.getAvailability()
+      this._appService.getAppointments(),
+      this._adminService.getAvailability(),
+      this._adminService.getBlackouts(),
+      this._adminService.getGallery()
     ]).subscribe((results) => {
       this.appointments = results[0];
+      this.appointmentsSorted = results[0].sort((a,b) => a.appointment.toDate() < b.appointment.toDate() ? 1 : -1);
       this.availability = results[1];
-      this.totalSalesDollars = this.appointments.filter(a => a.paid).map(a => a.paid).reduce((a, b) => a + b);
+      this.blackouts = results[2];
+      console.log(results[3]);
+      
+      this.gallery = results[3];
+      this.totalSalesDollars = this.appointments.filter(a => a.paid).map(a => a.paid).reduce((a, b) => a + b, 0);
       this.buildDays();
     });
   }
@@ -101,6 +118,7 @@ export class AdminComponent implements OnInit {
         time.appointment = this.appointments.find(a => moment(a.appointment.toDate()).isSame(time.time))
         day.times.push(time);
       }
+      day.isBlackout = this.blackouts.some(b => moment(b.day.toDate()).isSame(day.day, "day")) || !aDay.isOpen;
       this.days.push(day);
     }
     this.loading = false;
@@ -152,8 +170,110 @@ export class AdminComponent implements OnInit {
     this.view = this.views[i];
   }
 
+  public setBlackout(day) {
+    this._dialog.open(BlackoutDialog, {data: day}).afterClosed().subscribe(shouldBlackout => {
+      if (shouldBlackout) {
+        let bo = new Blackout();
+        bo.createdAt = new Date();
+        bo.day = day.day.toDate();
+        this._adminService.createBlackout(bo);
+      }
+    })
+  }
 
 
+
+  public addAppointment(): void {
+    this._appService.bookAppointment(true);
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+  public getImage(): void {
+    if (!this.loading) {
+      document.getElementById("image-input").click();
+    }
+  }
+
+  /* Fired onChange of image input in DOM */
+  public setImage(event): void {
+    this.loading = true;
+    let files = event.target.files;
+    for (let file of files) {
+      if (!file.type.match("image")) continue;
+      if (file.size < 200000) {
+        this.saveImage(file);
+      } else {
+        let fileReader = new FileReader();
+        fileReader.onload = () => {
+          let image = new Image();
+          image.src = fileReader.result as string;
+          image.onload = () =>
+            this._imageService.resampleImage(image, file.type, 1228).then(
+              (res) => {
+                // Don't save resized image if larger than original
+                res.blob.size >= file.size
+                  ? this.saveImage(file)
+                  : this.saveImage(res.blob);
+              },
+              (error) => {
+                alert("Error saving image. Please try again.");
+                console.error(error);
+                this.loading = false;
+              }
+            );
+        };
+        fileReader.readAsDataURL(file);
+      }
+    }
+  }
+  
+
+  private saveImage(blob) {
+    this.error = null;
+    const date = new Date().getTime();
+    this._imageService.uploadImage(blob, `gallery/${date}`).subscribe(url => {
+      this.loading = false;
+      this._adminService.addImage({imageUrl: url, rotate: 0, objectFit: ObjectFit.COVER});
+
+      // this.c.detectChanges();
+    }, error => {
+      this.error = "Images failed to upload.. Please try again";
+    });
+  }
+
+  public removeImage(image): void {
+    const index = this.gallery.indexOf(image);
+    if (index >= 0) {
+      this.gallery.splice(index, 1);
+      this._adminService.removeImage(image);
+    }
+  }
+
+  public rotateImage(image, index): void {
+      image.rotate++;
+      if (image.rotate == 4) image.rotate = 0;
+      let imag = document.getElementById('img' + index);
+      let rotate = 'rotate(' + (image.rotate * 90) + 'deg)';
+      imag.style.transform = rotate;
+      // this.ref.detectChanges();
+      this._adminService.updateImage(image);
+    }
+    
+    public fitImage(image): void {
+      image.objectFit =
+      image.objectFit == ObjectFit.COVER ? ObjectFit.CONTAIN : ObjectFit.COVER;
+      this._adminService.updateImage(image);
+  }
 
 
 }
@@ -164,5 +284,6 @@ export class Expense {
   id: string;
   createdAt: any;
   name: string;
+  amount: number;
   imageUrl: string;
 }

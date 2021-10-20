@@ -6,12 +6,23 @@
   text-align: center;
 }
 
+.contacts {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+}
+
 .day {
   .day-name {
     font-size: 28px;
     text-align: start;
     font-weight: bold;
     margin: 24px 0;
+    cursor: pointer;
+  }
+  .blackout {
+    color: red !important;
+    opacity: .54;
   }
   .block {
     padding: 12px 24px;
@@ -23,29 +34,29 @@
       text-align: start;
       opacity: .87;
     }
-    .appointment {
-      min-width: 250px;
-      margin-top: 12px;
-      margin-left: 12px;
-      border: 1px solid;
-      padding: 12px;
-      border-radius: 8px;
-      flex: 1;
-      .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        .a-name {
-          font-size: 24px;
-          font-weight: bold;
-          cursor: pointer;
-        }
-      }
-      mat-form-field {
-        width: 100%;
-        margin-top: 8px;
-      }
+  }
+}
+.appointment {
+  min-width: 250px;
+  margin-top: 12px;
+  margin-left: 12px;
+  border: 1px solid;
+  padding: 12px;
+  border-radius: 8px;
+  flex: 1;
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .a-name {
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
     }
+  }
+  mat-form-field {
+    width: 100%;
+    margin-top: 8px;
   }
 }
 
@@ -100,5 +111,155 @@
     position: absolute;
     top: 24px;
     right: 82px;
+  }
+}
+
+
+.fab {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+.unpaid {
+  color: red !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.photos {
+  width: 100vw;
+  display: flex;
+  position: absolute;
+  left: 0;
+  justify-content: center;
+  .photo {
+    position: relative;
+    height: 40vw;
+    width: 40vw;
+    margin: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    // outline: 1px solid rgba(0,0,0,.54);
+    mat-spinner {
+      position: absolute;
+    }
+    .img-btn {
+      position: absolute;
+      bottom: 8px;
+      right: 8px;
+      transition: all 400ms ease;
+      background-color: rgba($color: #000000, $alpha: 0.5);
+      color: white;
+      border-radius: 24px !important;
+    }
+    
+    .edit {
+      transform: scale(1.1);
+      z-index: 31;
+      mat-icon {
+        transition: transform 400ms ease;
+      }
+    }
+
+    .edit.on mat-icon {
+      transform: rotate(720deg);
+    }
+
+    .img-btn:nth-of-type(2) {
+      opacity: 0;
+      z-index: 30;
+      transition: transform 200ms ease-in-out, opacity 200ms ease-in-out,
+        background-color 300ms ease-in-out;
+    }
+
+    .img-btn:nth-of-type(2).visible {
+      transform: translate3d(0, -45px, 0);
+    }
+
+    .img-btn:nth-of-type(3) {
+      opacity: 0;
+      z-index: 29;
+      transition: transform 300ms ease-in-out, opacity 300ms ease-in-out,
+        background-color 300ms ease-in-out;
+    }
+
+    .img-btn:nth-of-type(3).visible {
+      transform: translate3d(0, -90px, 0);
+    }
+
+    .img-btn:nth-of-type(4) {
+      opacity: 0;
+      z-index: 28;
+      transition: transform 400ms ease-in-out, opacity 400ms ease-in-out,
+        background-color 300ms ease-in-out;
+    }
+
+    .img-btn:nth-of-type(4).visible {
+      transform: translate3d(-45px, 0, 0);
+    }
+
+    .img-btn.visible {
+      opacity: 1;
+    }
+    .add {
+      border: 1px solid;
+      border-radius: 24px;
+      padding: 8px;
+      color: #2a3755;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      margin: 4px 0;
+      mat-icon {
+        margin-right: 4px;
+      }
+    }
+    img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      transition: all 400ms;
+      overflow: hidden;
+    }
+    .delete {
+      cursor: pointer;
+      position: absolute;
+      color: #ffffff;
+      background: red;
+      top: 0;
+      right: 0;
+      border-bottom-left-radius: 17px;
+      padding: 0 0 6px 3px;
+      opacity: .54;
+    }
+    .rotate {
+      cursor: pointer;
+      position: absolute;
+      background: #666666;
+      opacity: .67;
+      color: #ffffff;
+      border-radius: 50%;
+      padding: 8px;
+    }
   }
 }

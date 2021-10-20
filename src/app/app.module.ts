@@ -14,21 +14,27 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFireFunctionsModule } from "@angular/fire/functions";
 import { LoginDialogComponent } from "./login/login.component";
 import { HomeComponent } from "./home/home.component";
-import { FooterComponent } from "./footer/footer.component";
 import { LocationsDialog } from "./locations-dialog/locations-dialog.component";
 import { DatePipe } from "@angular/common";
 import { PricingComponent } from "./pricing/pricing.component";
 import { AppointmentSheetComponent } from "./appointment/appointment-sheet.component";
+import { AboutComponent } from "./about/about.component";
+import { SmsComponent } from "./sms/sms.component";
+import { ContactsComponent } from "./contacts/contacts.component";
+import { GalleryComponent } from "./gallery/gallery.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginDialogComponent,
     HomeComponent,
-    FooterComponent,
     LocationsDialog,
     PricingComponent,
-    AppointmentSheetComponent
+    AppointmentSheetComponent,
+    AboutComponent,
+    SmsComponent,
+    ContactsComponent,
+    GalleryComponent
   ],
   imports: [
     BrowserModule,

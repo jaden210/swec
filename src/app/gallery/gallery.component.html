@@ -1,0 +1,16 @@
+<app-toolbar></app-toolbar>
+<h1>Gallery</h1>
+<h4>Kokomo Spray Tans was founded on the conviction that a beautiful tan should never come at the cost of premature skin aging or harmful UV exposure. 
+  Your skin is a reflection of your overall wellness, and our philosophy is that beautiful skin begins with exceptional skincare. 
+  That is why our spray tan formula actually nourishes and improves your skin while giving you a glow that will mesmerize everyone who lays eyes on you.
+  Check out some of our satisfied customers and book your appointment today.
+</h4>
+<h4>You can see more great tans by following me on Instagram: <a href="https://www.instagram.com/kokomospraytans/" target="_blank">Kokomo Spray Tans</a></h4>
+<div class="cta-cont"><button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Book now</button></div>
+<div class="photos">
+  <div class="photo" *ngFor="let img of gallery; index as i;">
+    <img *ngIf="!img.type" [id]="'img' + i" [src]="img.imageUrl" [ngStyle]="{objectFit: img.objectFit,transform: 'rotate(' + (img.rotate * 90 || '0') + 'deg)'}">
+  </div>
+</div>
+<div class="cta-cont" *ngIf="gallery?.length > 6"><button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Book now</button></div>
+<footer></footer>
