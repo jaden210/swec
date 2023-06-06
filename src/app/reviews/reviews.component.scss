@@ -1,5 +1,9 @@
 #page {
+<<<<<<< HEAD
   padding: 40px 12px;
+=======
+  padding: 80px 48px;
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -28,6 +32,7 @@
 }
 
 .reviews {
+<<<<<<< HEAD
   max-width: 1400px;
   display: flex;
   flex-wrap: wrap;
@@ -37,6 +42,14 @@
   .review {
     width: 100%;
     max-width: 400px;
+=======
+  width: 80vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .review {
+    width: 300px;
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     margin: 12px;
     background: white;
     border-radius: 4px;
@@ -47,7 +60,11 @@
     .flex-col {
       display: flex;
       flex-direction: column;
+<<<<<<< HEAD
       padding: 0px 24px 24px;
+=======
+      padding: 32px 48px 48px;
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       box-sizing: border-box;
       height: 100%;
       width: 100%;

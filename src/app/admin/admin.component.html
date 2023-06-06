@@ -1,5 +1,6 @@
 <div class="background" [ngSwitch]="view">
   <ng-container *ngSwitchCase="'appointments'">
+<<<<<<< HEAD
     <h1 class="header" (click)="setView('dashboard')">Appointments <span style="font-size: 15px;">({{appointments?.length || '...'}})</span></h1>
     <mat-spinner style="margin:auto" *ngIf="loading"></mat-spinner>
     <div class="day" *ngFor="let day of days">
@@ -7,6 +8,14 @@
       <div class="block" *ngFor="let time of day.times">
         <div class="time-name">{{time.time | date: 'shortTime'}}</div>
         <div class="blackout" *ngIf="time.isBlackout">{{time?.isBlackout?.name || 'Blackout from Calendar'}}</div>
+=======
+    <h1 (click)="nextView()">Appointments <span style="font-size: 15px;">({{appointments?.length || '...'}})</span></h1>
+    <mat-spinner style="margin:auto" *ngIf="loading"></mat-spinner>
+    <div class="day" *ngFor="let day of days">
+      <div class="day-name" [class.blackout]="day.isBlackout" (click)="setBlackout(day)">{{day.name}} {{day.isBlackout ? ' (closed)' : ''}}</div>
+      <div class="block" *ngFor="let time of day.times">
+        <div class="time-name">{{time.time | date: 'shortTime'}}</div>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
         <div class="appointment" *ngIf="time.appointment as appointment">
           <div class="row">
             <div class="a-name" (click)="aApp?.id == appointment.id ? aApp = null : aApp = appointment">{{appointment.name}}</div>
@@ -24,8 +33,11 @@
             </mat-form-field>
             <div class="row">
               <button mat-icon-button color="primary" *ngIf="!appointment.confirm" (click)="deleteAppointment(appointment)"><mat-icon>delete</mat-icon></button>
+<<<<<<< HEAD
               <button mat-icon-button color="primary" style="margin-left: 12px" (click)="textThem(appointment)"><mat-icon>sms</mat-icon></button>
               <button mat-icon-button color="primary" style="margin-left: 12px" (click)="navContact(appointment)"><mat-icon>account_circle</mat-icon></button>
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
               <button mat-button color="primary" *ngIf="!appointment.confirm" (click)="updateAppointment(appointment, 'confirm')">confirm appointment</button>
             </div>
           </ng-container>
@@ -34,11 +46,16 @@
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="'sales'">
+<<<<<<< HEAD
     <div class="header">
       <h1>Sales <span style="font-size: 15px;">({{SalesLength || '...'}})</span></h1>
       <div style="flex:1"></div>
       <h2>{{yearSalesDollars || 0 | currency}}</h2>
     </div>
+=======
+    <h1 (click)="nextView()">Sales <span style="font-size: 15px;">({{SalesLength || '...'}})</span></h1>
+    <h2>{{totalSalesDollars || 0 | currency}}</h2>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     <div class="appointment" *ngFor="let appointment of appointments">
       <div class="row">
         <div class="a-name" (click)="aApp?.id == appointment.id ? aApp = null : aApp = appointment">{{appointment.name}}</div>
@@ -60,19 +77,27 @@
         </mat-form-field>
         <div class="row">
           <button mat-icon-button color="primary" *ngIf="!appointment.confirm" (click)="deleteAppointment(appointment)"><mat-icon>delete</mat-icon></button>
+<<<<<<< HEAD
           <button mat-icon-button color="primary" style="margin-left: 12px" (click)="textThem(appointment)"><mat-icon>sms</mat-icon></button>
           <button mat-icon-button color="primary" style="margin-left: 12px" (click)="navContact(appointment)"><mat-icon>account_circle</mat-icon></button>
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
           <button mat-button color="primary" *ngIf="!appointment.confirm" (click)="updateAppointment(appointment, 'confirm')">confirm appointment</button>
         </div>
       </ng-container>
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="'expenses'">
+<<<<<<< HEAD
     <div class="header">
       <h1>Expenses <span style="font-size: 15px;">({{expenses?.length || '...'}})</span></h1>
       <h2>{{yearExpenses || 0 | currency}}</h2>
     </div>
     <!-- <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="addExpense()">Add an Expense</button> -->
+=======
+    <h1 (click)="nextView()">Expenses <span style="font-size: 15px;">({{expenses?.length || '...'}})</span></h1>
+    <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="addExpense()">Add an Expense</button>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     <div class="expense" *ngFor="let expense of expenses">
       <mat-form-field appearance="outline">
         <textarea cdkTextareaAutosize matInput [(ngModel)]="expense.name" (change)="updateExpense(expense)" placeholder="name"></textarea>
@@ -90,8 +115,13 @@
     </div>
   </ng-container>
   <ng-container *ngSwitchCase="'gallery'">
+<<<<<<< HEAD
     <h1 class="header">Gallery <span style="font-size: 15px;">({{gallery?.length || '...'}})</span></h1>
     <!-- <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="getImage()">Add an Image</button> -->
+=======
+    <h1 (click)="nextView()">Gallery <span style="font-size: 15px;">({{gallery?.length || '...'}})</span></h1>
+    <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="getImage()">Add an Image</button>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     <div style="height: 0px; width: 0px; overflow:hidden"><input type="file" id="image-input" multiple accept=".png, .jpg" (change)="setImage($event)"/></div>
     <div class="photos">
       <div class="photo" *ngFor="let img of gallery; index as i;">
@@ -108,12 +138,15 @@
             mat-mini-fab
             class="img-btn"
             [class.visible]="editImage == i"
+<<<<<<< HEAD
             (click)="featureImage(img)"><mat-icon>{{img.featured ? 'star' : 'star_outline'}}</mat-icon>
           </button>
           <button
             mat-mini-fab
             class="img-btn"
             [class.visible]="editImage == i"
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
             (click)="rotateImage(img, i)"><mat-icon>rotate_right</mat-icon>
           </button>
           <button
@@ -132,17 +165,21 @@
       </div>
     </div>
   </ng-container>
+<<<<<<< HEAD
   <ng-container *ngSwitchCase="'dashboard'">
     <div class="header">
       <h1>Dashboard</h1>
     </div>
     <dash [appointments]="appointments" [expenses]="expenses"></dash>
   </ng-container>
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 </div>
 <div class="image-viewer" [@fadeIn] *ngIf="activeImage">
   <img [src]="activeImage">
   <button mat-fab class="close" (click)="activeImage = null" color="primary"><mat-icon>close</mat-icon></button>
 </div>
+<<<<<<< HEAD
 <!-- <button mat-icon-button color="primary" class="contacts" routerLink="/contacts"><mat-icon>contacts</mat-icon></button> -->
 <!-- <button mat-mini-fab class="fab" *ngIf="view == 'appointments' || view == 'sales'" (click)="addAppointment()"><mat-icon>add</mat-icon></button> -->
 <div class="toolbar">
@@ -154,3 +191,7 @@
   <div class="tab" [class.active]="view == 'dashboard'" (click)="setView('dashboard')"><mat-icon>dashboard</mat-icon></div>
   <div class="tab" routerLink="/home"><mat-icon>home</mat-icon></div>
 </div>
+=======
+<button mat-icon-button color="primary" class="contacts" routerLink="/contacts"><mat-icon>contacts</mat-icon></button>
+<button mat-mini-fab class="fab" *ngIf="view == 'appointments' || view == 'sales'" (click)="addAppointment()"><mat-icon>add</mat-icon></button>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf

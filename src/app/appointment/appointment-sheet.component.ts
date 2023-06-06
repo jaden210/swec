@@ -61,6 +61,7 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
     if(this.name && ((this.number && this.number.length >= 10) || this.ig)) {
       this.view = this.isAdmin ? 'date' : 'day';
       this.days = [];
+<<<<<<< HEAD
       for (let index = 1; index <= 15; index++) {
         let day = moment().startOf('day').add(index, "days");
         let aDay = this.availability.find(t => t.day == moment(day).format('dddd').toLowerCase());
@@ -73,6 +74,13 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
           }
           if (day['times'].length > 0) this.days.push(day);
         }
+=======
+      for (let index = 0; index <= 15; index++) {
+        let day = moment().startOf('day').add(index, "days");
+        let aDay = this.availability.find(t => t.day == moment(day).format('dddd').toLowerCase());
+        let isBlackout = this.blackouts.some(b => moment(b.day.toDate()).isSame(day, "day"));
+        if (aDay && aDay.isOpen && !isBlackout) this.days.push(day);
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       }
       this.loading = false;
     }
@@ -89,7 +97,18 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
 
   public setDay(day) {
     this.view = 'time';
+<<<<<<< HEAD
     this.times = day.times;
+=======
+    this.loading = true;
+    this.times = [];
+    let aDay = this.availability.find(t => t.day == moment(day).format('dddd').toLowerCase());
+    for (let index = 0; index <= ((aDay.closeTime - aDay.openTime) * 2); index++) {
+      let time = moment(day).add(((aDay.openTime * 60) + (index * 30)), "minutes");
+      if (!this.appointments.find(a => moment(a.appointment.toDate()).isSame(time))) this.times.push(time);
+    }
+    this.loading = false;
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   }
 
   public setTime(time) {
@@ -105,6 +124,7 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
     this.loading = true;
     var numberPattern = /\d+/g;
     appointment.createdAt = new Date();
+<<<<<<< HEAD
     appointment.name = this.name.trim();
     appointment.appointment = this.time.toDate();
     appointment.number = this.number ? this.number.match( numberPattern ).join([]) : null;
@@ -113,14 +133,26 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
       this.loading = false;
       this.view = 'done';
       if (this.isAdmin) this.close();
+=======
+    appointment.name = this.name;
+    appointment.appointment = this.time.toDate();
+    appointment.number = this.number ? this.number.match( numberPattern ).join([]) : null;
+    appointment.ig = this.ig;
+    this._appointmentService.createAppointment(appointment).then(() => {
+      this.loading = false;
+      this.view = 'done';
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       this._appService.addToContactList(appointment.number, appointment.name, appointment.ig)
     })
   }
 
+<<<<<<< HEAD
   public message(): void {
     window.open("https://www.instagram.com/kokomospraytans/");
   }
 
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public close() {
     this._bottomSheetRef.dismiss();
   }
@@ -137,7 +169,11 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
   }
 
   public prep() {
+<<<<<<< HEAD
     this._router.navigate(['/complete']);
+=======
+    this._router.navigate(['/prep']);
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     this.close();
   }
 

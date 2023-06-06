@@ -2,7 +2,10 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AboutComponent } from "./about/about.component";
 import { AuthGuard } from "./auth.guard";
+<<<<<<< HEAD
 import { ContactComponent } from "./contact/contact.component";
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 import { ContactsComponent } from "./contacts/contacts.component";
 import { GalleryComponent } from "./gallery/gallery.component";
 import { HomeComponent } from "./home/home.component";
@@ -29,7 +32,10 @@ const appRoutes: Routes = [
   },
   {path: 'sms', component: SmsComponent, canActivate: [AuthGuard]},
   {path: 'contacts', component: ContactsComponent, canActivate: [AuthGuard]},
+<<<<<<< HEAD
   {path: 'contact', component: ContactComponent, canActivate: [AuthGuard]},
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   {
     path: "faq",
     loadChildren: () => import("./faq/faq.module").then((m) => m.FaqModule),
@@ -39,6 +45,7 @@ const appRoutes: Routes = [
     loadChildren: () => import("./prep/prep.module").then((m) => m.PrepModule),
   },
   {
+<<<<<<< HEAD
     path: "complete",
     loadChildren: () => import("./prep/prep.module").then((m) => m.PrepModule),
   },
@@ -47,6 +54,8 @@ const appRoutes: Routes = [
     loadChildren: () => import("./post/post.module").then((m) => m.PostModule),
   },
   {
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     path: "admin",
     loadChildren: () =>
       import("./admin/admin.module").then((m) => m.AdminModule),

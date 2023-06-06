@@ -5,7 +5,10 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { HomeService } from "./home.service";
 import { AppService, Quote } from "../app.service";
 import { InfoDialog } from "../shared/info-dialog/info-dialog.component";
+<<<<<<< HEAD
 import { AngularFirestore } from "@angular/fire/firestore";
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
 @Component({
   selector: "home",
@@ -28,22 +31,33 @@ export class HomeComponent implements OnInit {
   public quotes: Quote[];
   public filteredQuotes: Quote[];
   public quote: Quote = new Quote();
+<<<<<<< HEAD
   public gallery;
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
   constructor(
     private _dialog: MatDialog,
     public router: Router,
     private _route: ActivatedRoute,
     private _homeService: HomeService,
+<<<<<<< HEAD
     private _appService: AppService,
     private _db: AngularFirestore
+=======
+    private _appService: AppService
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   ) {}
 
   /* Close login dialog on navigation to this component */
   ngOnInit() {
+<<<<<<< HEAD
     this._db.collection("gallery", ref => ref.where("featured", "==", true)).valueChanges().subscribe(featured => {
       this.gallery = featured;
     })
+=======
+    
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   }
 
   public signUpContacts(phoneNumber) {
@@ -59,7 +73,10 @@ export class HomeComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public book() {
     this._appService.bookAppointment();
   }

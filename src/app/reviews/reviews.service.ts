@@ -11,7 +11,11 @@ export class ReviewsService {
 
   public getReviews(): Observable<Review[]> {
     return this.db
+<<<<<<< HEAD
       .collection("reviews", ref => ref.orderBy("createdAt", "desc"))
+=======
+      .collection("reviews")
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       .snapshotChanges()
       .pipe(
         map((actions) =>

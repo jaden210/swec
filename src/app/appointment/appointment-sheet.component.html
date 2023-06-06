@@ -1,4 +1,5 @@
 <ng-container>
+<<<<<<< HEAD
 <div class="toolbar">
   <div class="title">Book an Appointment</div>
   <div style="flex:1"></div>
@@ -30,6 +31,35 @@
     <ng-container *ngSwitchCase="'date'">
       <div class="tab-title">When is/was the appointment?</div>
       <mat-form-field  class="bt-btn" appearance="fill">
+=======
+  <div class="toolbar">
+    <!-- <button mat-icon-button (click)="leave()"><mat-icon>close</mat-icon></button> -->
+    <div class="title">Book an Appointment</div>
+    <!-- <div class="title">Select a day:</div> -->
+    <button (click)="close()" class="post-btn">cancel</button>
+  </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="view" [ngSwitch]="view">
+    <ng-container *ngSwitchCase="'info'">
+      <div class="tab-title">{{!isAdmin ? 'Tell us about you:' : 'Enter your clients info'}}</div>
+      <mat-form-field appearance="outline">
+        <mat-label>name</mat-label>
+        <input matInput type="text" placeholder="Samantha Best" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>phone number</mat-label>
+        <input matInput type="tel" placeholder="8018458545" [(ngModel)]="number" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>instagram handle</mat-label>
+        <input matInput type="text" placeholder="kokomosprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || (!ig && !number) || (number && number.length < 10)">Next</button>
+    </ng-container>
+    <div *ngSwitchCase="'date'">
+      <div class="tab-title">When is/was the appointment?</div>
+      <mat-form-field class="example-full-width" appearance="fill">
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
         <mat-label>Choose a date</mat-label>
         <input matInput [matDatepicker]="picker" [(ngModel)]="adminDate">
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
@@ -43,7 +73,11 @@
         <span matPrefix>$&nbsp;</span>
       </mat-form-field>
       <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="setDate()" [disabled]="!adminDate || !adminTime || !adminPaid">Next</button>
+<<<<<<< HEAD
     </ng-container>
+=======
+    </div>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     <div *ngSwitchCase="'day'">
       <div class="tab-title">Select a day:</div>
       <mat-list *ngIf="days.length">
@@ -64,20 +98,35 @@
       <div class="tab-title">Does this look good?</div>
       <div class="tab-title">{{time | date: 'EEEE, MMM d, y, h:mm:ss a'}}</div>
       <div style="height: 100px;"></div>
+<<<<<<< HEAD
       <button mat-stroked-button color="accent" (click)="back()" class="post-btn bt-btn">Start Over</button>
       <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px;" (click)="setAppointment()" class="post-btn bt-btn">Confirm Appointment</button>
+=======
+      <button mat-stroked-button color="accent" (click)="back()" class="post-btn">Start Over</button>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px;" (click)="setAppointment()" class="post-btn">Confirm Appointment</button>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       
     </ng-container>
     <ng-container *ngSwitchCase="'done'">
       <div class="tab-title">We can't wait to see you!</div>
+<<<<<<< HEAD
       <button mat-raised-button (click)="addToGoogleCalendar()" style="color:white" class="bt-btn" color="primary">Add to Google Calendar</button>
       <button mat-raised-button (click)="nav()" style="color:white; margin:12px 0" class="bt-btn" color="primary">Get Directions</button>
       <button mat-raised-button click="prep()" style="color:white; margin:12px 0" class="bt-btn" color="primary">See Prep Instructions</button>
       <button mat-stroked-button color="primary" (click)="close()" class="post-btn bt-btn">Close</button>
+=======
+      <button mat-raised-button (click)="addToGoogleCalendar()" style="color:white" color="primary">Add to Google Calendar</button>
+      <button mat-raised-button (click)="nav()" style="color:white; margin:12px 0" color="primary">Get Directions</button>
+      <button mat-raised-button click="prep()" style="color:white; margin:12px 0" color="primary">See Prep Instructions</button>
+      <button mat-stroked-button color="primary" (click)="close()" class="post-btn">Close</button>
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     </ng-container>
   </div>
   <div class="row" >
     
   </div>
+<<<<<<< HEAD
   <!-- <iframe src="https://app.cal.com/kokomo" frameborder="0" allowfullscreen></iframe> -->
+=======
+>>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 </ng-container>
