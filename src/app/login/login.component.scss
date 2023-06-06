@@ -1,0 +1,41 @@
+#progress-bar-wrapper {
+  height: 4px;
+}
+
+#logo {
+  width: calc(100% - 12px);
+  max-height: 80px;
+  object-fit: contain;
+  margin-bottom: 24px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button#sign-in {
+  width: 80%;
+  margin: auto;
+}
+
+a {
+  margin: 16px auto 24px auto;
+  font-size: 14px;
+  cursor: pointer;
+  width: 80%;
+  text-align: center;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+#error {
+  margin: auto auto 16px auto;
+  border: 1px solid #e53935;
+  color: #e53935;
+  text-align: center;
+  padding: 12px;
+  font-size: 14px;
+  border-radius: 4px;
+}

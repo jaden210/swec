@@ -1,0 +1,24 @@
+.review {
+  .flex-col {
+    display: flex;
+    flex-direction: column;
+    padding: 12px 12px 24px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    h3,
+    .rating {
+      color: #303f9f;
+    }
+    h3,
+    p {
+      text-align: center;
+    }
+    .rating {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: auto;
+    }
+  }
+}

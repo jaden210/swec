@@ -1,0 +1,13 @@
+<div class="screen-drop" (click)="close()">
+  <div class="demo-splash" (click)="$event.stopPropagation()">
+    <button mat-icon-button (click)="close()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <span>
+      <h1>{{ title }}</h1>
+      <p>
+        {{ body }}
+      </p>
+    </span>
+  </div>
+</div>

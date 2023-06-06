@@ -1,0 +1,64 @@
+<div class="section">
+  <div class="year">{{currentYear}}</div>
+  <div class="stat">
+    <div class="name">Appointments</div>
+    <div class="value">{{CYAppointments || 0}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Sales</div>
+    <div class="value">{{(CYSales || 0) | currency}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Expenses</div>
+    <div class="value">{{(CYExpenses || 0) | currency}}</div>
+  </div>
+  <div class="stat total">
+    <div class="name">Net</div>
+    <div class="value">{{(CYNet || 0) | currency}}</div>
+  </div>
+</div>
+<div class="section">
+  <div class="year">{{lastYear}}</div>
+  <div class="stat">
+    <div class="name">Appointments</div>
+    <div class="value">{{LYAppointments || 0}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Sales</div>
+    <div class="value">{{(LYSales || 0) | currency}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Expenses</div>
+    <div class="value">{{(LYExpenses || 0) | currency}}</div>
+  </div>
+  <div class="stat total">
+    <div class="name">Net</div>
+    <div class="value">{{(LYNet || 0) | currency}}</div>
+  </div>
+</div>
+<div class="section">
+  <div class="year">All-Time</div>
+  <div class="stat">
+    <div class="name">Appointments</div>
+    <div class="value">{{appointments.length || 0}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Sales</div>
+    <div class="value">{{(Sales || 0) | currency}}</div>
+  </div>
+  <div class="stat">
+    <div class="name">Expenses</div>
+    <div class="value">({{(Expenses || 0) | currency}})</div>
+  </div>
+  <div class="stat total">
+    <div class="name">Net</div>
+    <div class="value">{{(Net || 0) | currency}}</div>
+  </div>
+</div>
+<div class="section">
+  <div class="year">Most Frequent Clients</div>
+  <div class="stat" *ngFor="let client of Popularity">
+    <div class="name">{{client.name}}</div>
+    <div class="value">{{client.count}} visits</div>
+  </div>
+</div>

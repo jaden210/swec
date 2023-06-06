@@ -1,0 +1,12 @@
+<app-toolbar></app-toolbar>
+<div class="background">
+  <div class="name">{{appointment?.name}}</div>
+  <div class="ig" *ngIf="appointment.ig">instagram: {{appointment?.ig}}</div>
+  <div class="date">{{appointment?.appointment}}</div>
+  <button mat-stroked-button color="primary" class="button" (click)="navContact()">View {{appointment?.name}}</button>
+  <ng-container *ngFor="let text of smsBodies; let i = index">
+    <button mat-raised-button color="primary" class="button" *ngIf="(text.social ? appointment?.ig : appointment?.number)" (click)="popSMS(i)">{{text.name}}</button>
+  </ng-container>
+</div>
+<div style="height: 40vh;"></div>
+<footer></footer>

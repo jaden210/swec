@@ -1,0 +1,58 @@
+<ng-container>
+  <div class="toolbar">
+    <!-- <button mat-icon-button (click)="leave()"><mat-icon>close</mat-icon></button> -->
+    <div class="title">Book an Appointment</div>
+    <!-- <div class="title">Select a day:</div> -->
+    <button (click)="close()" class="post-btn">cancel</button>
+  </div>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+  <div class="view" [ngSwitch]="view">
+    <ng-container *ngSwitchCase="'info'">
+      <mat-form-field appearance="fill">
+        <mat-label>Select Customer</mat-label>
+        <mat-select (selectionChange)="setCustomer($event)">
+          <mat-option *ngFor="let customer of customers" [value]="customer">{{customer.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="tab-title">or create a new customer</div>
+      <mat-form-field appearance="outline">
+        <mat-label>name</mat-label>
+        <input matInput type="text" placeholder="Samantha Best" [(ngModel)]="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>phone number</mat-label>
+        <input matInput type="tel" placeholder="8018458545" [(ngModel)]="number" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>instagram handle</mat-label>
+        <input matInput type="text" placeholder="kokomosprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || (!ig && !number) || (number && number.length < 10)">Next</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date'">
+      <div class="tab-title">When is/was the appointment?</div>
+      <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="adminDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="time" [(ngModel)]="adminTime">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="number" [(ngModel)]="adminPaid">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="setDate()" [disabled]="!adminDate || !adminTime || !adminPaid">Next</button>
+    </ng-container>
+    <ng-container *ngSwitchCase="'done'">
+      <div class="tab-title">The appointment was created!</div>
+      <button mat-raised-button color="primary" style="color:white; margin-bottom: 12px;" (click)="reset()" class="post-btn">Add Another</button>
+      <button mat-stroked-button color="primary" (click)="close()" class="post-btn">Close</button>
+    </ng-container>
+  </div>
+  <div class="row" >
+    
+  </div>
+</ng-container>

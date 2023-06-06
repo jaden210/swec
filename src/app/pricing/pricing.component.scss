@@ -1,0 +1,23 @@
+.background {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 12px;
+}
+
+.price {
+  font-size: 42px;
+  text-align: end;
+  font-weight: bold;
+  margin-bottom: 24px;
+  width: 600px;
+  max-width: calc(100vw - 32px);
+}
+
+table {
+  text-align: end;
+  font-size: 21px;
+  width: 600px;
+  max-width: calc(100vw - 32px);
+}

@@ -1,0 +1,19 @@
+<ng-container>
+  <h1 mat-dialog-title>Close shop on {{data.day | date}}?</h1>
+  <div mat-dialog-content>
+    <p>
+      Heads up, this will remove the day from appointment booking opportunities. Are you sure you want to continue?
+    </p>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>I want my mommy</button>
+    <button
+      (click)="close(true)"
+      mat-flat-button
+      color="primary"
+      style="color: white"
+    >
+      Close for Day
+    </button>
+  </div>
+</ng-container>

@@ -1,0 +1,32 @@
+mat-dialog-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+}
+
+mat-form-field {
+  width: 100%;
+  min-width: 200px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+mat-icon:hover {
+  color: #ffca28;
+}
+
+.rating {
+  color: #ffca28;
+}
+
+.error {
+  color: #e91e63;
+}
+
+@media screen and (max-width: 400px) {
+  mat-dialog-container {
+    width: 240px;
+  }
+}

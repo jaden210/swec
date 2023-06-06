@@ -1,0 +1,156 @@
+<div class="background" [ngSwitch]="view">
+  <ng-container *ngSwitchCase="'appointments'">
+    <h1 class="header" (click)="setView('dashboard')">Appointments <span style="font-size: 15px;">({{appointments?.length || '...'}})</span></h1>
+    <mat-spinner style="margin:auto" *ngIf="loading"></mat-spinner>
+    <div class="day" *ngFor="let day of days">
+      <div class="day-name" [id]="day.name" [class.blackout]="day.isBlackout">{{day.name}} {{day.isBlackout ? ' (closed)' : ''}}</div>
+      <div class="block" *ngFor="let time of day.times">
+        <div class="time-name">{{time.time | date: 'shortTime'}}</div>
+        <div class="blackout" *ngIf="time.isBlackout">{{time?.isBlackout?.name || 'Blackout from Calendar'}}</div>
+        <div class="appointment" *ngIf="time.appointment as appointment">
+          <div class="row">
+            <div class="a-name" (click)="aApp?.id == appointment.id ? aApp = null : aApp = appointment">{{appointment.name}}</div>
+            <a class="a-number" *ngIf="appointment.number" [href]="'tel:' + appointment.number">{{appointment.number}}</a>
+            <a class="a-ig" *ngIf="appointment.ig" [href]="'https://instagram.com/' + appointment.ig" target="_blank">{{appointment.ig}}</a>
+          </div>
+          <ng-container *ngIf="aApp?.id == appointment.id">
+            <mat-form-field appearance="outline">
+              <textarea cdkTextareaAutosize matInput [(ngModel)]="appointment.note" (change)="updateAppointment(appointment)" placeholder="notes"></textarea>
+            </mat-form-field>
+            <mat-form-field *ngIf="appointment.confirm">
+              <mat-label>paid amount</mat-label>
+              <span matPrefix>$ &nbsp;</span>
+              <input matInput [(ngModel)]="appointment.paid" type="number" step=".5" (change)="updateAppointment(appointment)" placeholder="15">
+            </mat-form-field>
+            <div class="row">
+              <button mat-icon-button color="primary" *ngIf="!appointment.confirm" (click)="deleteAppointment(appointment)"><mat-icon>delete</mat-icon></button>
+              <button mat-icon-button color="primary" style="margin-left: 12px" (click)="textThem(appointment)"><mat-icon>sms</mat-icon></button>
+              <button mat-icon-button color="primary" style="margin-left: 12px" (click)="navContact(appointment)"><mat-icon>account_circle</mat-icon></button>
+              <button mat-button color="primary" *ngIf="!appointment.confirm" (click)="updateAppointment(appointment, 'confirm')">confirm appointment</button>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'sales'">
+    <div class="header">
+      <h1>Sales <span style="font-size: 15px;">({{SalesLength || '...'}})</span></h1>
+      <div style="flex:1"></div>
+      <h2>{{yearSalesDollars || 0 | currency}}</h2>
+    </div>
+    <div class="appointment" *ngFor="let appointment of appointments">
+      <div class="row">
+        <div class="a-name" (click)="aApp?.id == appointment.id ? aApp = null : aApp = appointment">{{appointment.name}}</div>
+        <a class="a-number" *ngIf="appointment.number" [href]="'tel:' + appointment.number">{{appointment.number}}</a>
+        <a class="a-ig" *ngIf="appointment.ig" [href]="'https://instagram.com/' + appointment.ig" target="_blank">{{appointment.ig}}</a>
+      </div>
+      <div class="row">
+        <div class="created-at">{{appointment.appointment.toDate() | date}}</div>
+        <div class="sales" [class.unpaid]="!appointment.paid">{{(appointment.paid | currency) || 'UNPAID'}}</div>
+      </div>
+      <ng-container *ngIf="aApp?.id == appointment.id">
+        <mat-form-field appearance="outline">
+          <textarea cdkTextareaAutosize matInput [(ngModel)]="appointment.note" (change)="updateAppointment(appointment)" placeholder="notes"></textarea>
+        </mat-form-field>
+        <mat-form-field *ngIf="appointment.confirm">
+          <mat-label>paid amount</mat-label>
+          <span matPrefix>$ &nbsp;</span>
+          <input matInput [(ngModel)]="appointment.paid" type="number" step=".5" (change)="updateAppointment(appointment)" placeholder="15">
+        </mat-form-field>
+        <div class="row">
+          <button mat-icon-button color="primary" *ngIf="!appointment.confirm" (click)="deleteAppointment(appointment)"><mat-icon>delete</mat-icon></button>
+          <button mat-icon-button color="primary" style="margin-left: 12px" (click)="textThem(appointment)"><mat-icon>sms</mat-icon></button>
+          <button mat-icon-button color="primary" style="margin-left: 12px" (click)="navContact(appointment)"><mat-icon>account_circle</mat-icon></button>
+          <button mat-button color="primary" *ngIf="!appointment.confirm" (click)="updateAppointment(appointment, 'confirm')">confirm appointment</button>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'expenses'">
+    <div class="header">
+      <h1>Expenses <span style="font-size: 15px;">({{expenses?.length || '...'}})</span></h1>
+      <h2>{{yearExpenses || 0 | currency}}</h2>
+    </div>
+    <!-- <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="addExpense()">Add an Expense</button> -->
+    <div class="expense" *ngFor="let expense of expenses">
+      <mat-form-field appearance="outline">
+        <textarea cdkTextareaAutosize matInput [(ngModel)]="expense.name" (change)="updateExpense(expense)" placeholder="name"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <span matPrefix>$ &nbsp;</span>
+        <input cdkTextareaAutosize matInput type="number" [(ngModel)]="expense.amount" (change)="updateExpense(expense)" placeholder="amount">
+      </mat-form-field>
+      <div class="row">
+        <div class="e-c">{{expense?.createdAt?.toDate() | date: 'medium' || 'new expense'}}</div>
+        <button mat-icon-button (click)="addImage()" *ngIf="!expense.imageUrl" color="primary"><mat-icon>add_a_photo</mat-icon></button>
+        <img class="e-img" (click)="activeImage = expense.imageUrl" *ngIf="expense.imageUrl" [src]="expense.imageUrl">
+      </div>
+      <div style="height: 0px; width: 0px; overflow:hidden"><input type="file" id="image-picker" accept=".png,.jpg" (change)="uploadExpenseImage($event, expense)"/></div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'gallery'">
+    <h1 class="header">Gallery <span style="font-size: 15px;">({{gallery?.length || '...'}})</span></h1>
+    <!-- <button mat-raised-button color="primary" class="add-btn" style="color:white" (click)="getImage()">Add an Image</button> -->
+    <div style="height: 0px; width: 0px; overflow:hidden"><input type="file" id="image-input" multiple accept=".png, .jpg" (change)="setImage($event)"/></div>
+    <div class="photos">
+      <div class="photo" *ngFor="let img of gallery; index as i;">
+        <img *ngIf="!img.type" [id]="'img' + i" [src]="img.imageUrl" [ngStyle]="{objectFit: img.objectFit,transform: 'rotate(' + (img.rotate * 90 || '0') + 'deg)'}">
+        <!-- Start Image Editing Buttons -->
+        <ng-container>
+          <button
+            mat-mini-fab
+            class="img-btn edit"
+            [class.on]="editImage == i"
+            (click)="editImage == i ? editImage = null : editImage = i"><mat-icon>{{ editImage == i ? "close" : "edit" }}</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            class="img-btn"
+            [class.visible]="editImage == i"
+            (click)="featureImage(img)"><mat-icon>{{img.featured ? 'star' : 'star_outline'}}</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            class="img-btn"
+            [class.visible]="editImage == i"
+            (click)="rotateImage(img, i)"><mat-icon>rotate_right</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            class="img-btn"
+            [class.visible]="editImage == i"
+            (click)="fitImage(img)"><mat-icon>aspect_ratio</mat-icon>
+          </button>
+          <button
+            mat-mini-fab
+            class="img-btn"
+            [class.visible]="editImage == i"
+            (click)="removeImage(img)"><mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <ng-container *ngSwitchCase="'dashboard'">
+    <div class="header">
+      <h1>Dashboard</h1>
+    </div>
+    <dash [appointments]="appointments" [expenses]="expenses"></dash>
+  </ng-container>
+</div>
+<div class="image-viewer" [@fadeIn] *ngIf="activeImage">
+  <img [src]="activeImage">
+  <button mat-fab class="close" (click)="activeImage = null" color="primary"><mat-icon>close</mat-icon></button>
+</div>
+<!-- <button mat-icon-button color="primary" class="contacts" routerLink="/contacts"><mat-icon>contacts</mat-icon></button> -->
+<!-- <button mat-mini-fab class="fab" *ngIf="view == 'appointments' || view == 'sales'" (click)="addAppointment()"><mat-icon>add</mat-icon></button> -->
+<div class="toolbar">
+  <div class="tab" [class.active]="view == 'appointments'" (click)="setView('appointments')"><mat-icon>event_available</mat-icon></div>
+  <div class="tab" [class.active]="view == 'sales'" (click)="setView('sales')"><mat-icon>payments</mat-icon></div>
+  <div class="tab" [class.active]="view == 'expenses'" (click)="setView('expenses')"><mat-icon>sell</mat-icon></div>
+  <div class="mid" (click)="takeAction()"><mat-icon>{{view == 'gallery' ? 'add_a_photo' : (view == 'appointments') ? 'event_upcoming' : 'add_circle'}}</mat-icon></div>
+  <div class="tab" [class.active]="view == 'gallery'" (click)="setView('gallery')"><mat-icon>photo_camera</mat-icon></div>
+  <div class="tab" [class.active]="view == 'dashboard'" (click)="setView('dashboard')"><mat-icon>dashboard</mat-icon></div>
+  <div class="tab" routerLink="/home"><mat-icon>home</mat-icon></div>
+</div>

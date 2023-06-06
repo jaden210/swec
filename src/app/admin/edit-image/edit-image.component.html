@@ -1,0 +1,19 @@
+<h1 mat-dialog-title>Edit Image</h1>
+<div mat-dialog-content id="body">
+  <mat-form-field>
+    <mat-label>URL Link</mat-label>
+    <input
+      matInput
+      type="text"
+      required
+      placeholder="https://google.com"
+      [(ngModel)]="data.href"
+    />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button (click)="close('delete')">DELETE IMAGE</button>
+  <div style="flex:1"></div>
+  <button mat-button (click)="close()">CANCEL</button>
+  <button mat-button color="primary" (click)="close('save')">SAVE</button>
+</div>
