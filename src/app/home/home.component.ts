@@ -5,10 +5,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 import { HomeService } from "./home.service";
 import { AppService, Quote } from "../app.service";
 import { InfoDialog } from "../shared/info-dialog/info-dialog.component";
-<<<<<<< HEAD
 import { AngularFirestore } from "@angular/fire/firestore";
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
 @Component({
   selector: "home",
