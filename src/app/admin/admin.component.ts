@@ -8,11 +8,7 @@ import { Observable, combineLatest } from "rxjs";
 import { InfoDialog } from "../shared/info-dialog/info-dialog.component";
 import { Location } from "@angular/common";
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-<<<<<<< HEAD
 import { finalize, timestamp } from "rxjs/operators";
-=======
-import { finalize } from "rxjs/operators";
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 import { ConfirmDialog } from "./confirm-dialog/confirm-dialog.component";
 import { Appointment, Blackout } from "../appointment/appointment-sheet.service";
 import * as moment from "moment";
@@ -20,10 +16,7 @@ import { trigger, transition, style, animate } from "@angular/animations";
 import { AppService } from "../app.service";
 import { BlackoutDialog } from "./blackout-dialog/blackout-dialog.component";
 import { ImageService } from "./image.service";
-<<<<<<< HEAD
 import { Router } from "@angular/router";
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
 @Component({
   selector: "app-admin",
@@ -53,7 +46,6 @@ export class AdminComponent implements OnInit {
   public days;
   public loading: boolean = false;
   public aApp = null;
-<<<<<<< HEAD
   public view: string;
   public views = [
     "appointments",
@@ -67,17 +59,6 @@ export class AdminComponent implements OnInit {
   public yearSalesDollars: number = null;
   public yearExpenses: number = null;
   public totalExpenses: number = null;
-=======
-  public view: string = "appointments";
-  public views = [
-    "appointments",
-    "expenses",
-    "sales",
-    "gallery"
-  ];
-  public activeImage = null;
-  public totalSalesDollars: number = null;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public error: string;
   public editImage;
 
@@ -88,12 +69,8 @@ export class AdminComponent implements OnInit {
     private _signInService: SignInService,
     private _location: Location,
     private _appService: AppService,
-<<<<<<< HEAD
     private _imageService: ImageService,
     private _router: Router
-=======
-    private _imageService: ImageService
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   ) {}
 
   ngOnInit() {
@@ -111,18 +88,11 @@ export class AdminComponent implements OnInit {
       this.appointmentsSorted = results[0].sort((a,b) => a.appointment.toDate() < b.appointment.toDate() ? 1 : -1);
       this.availability = results[1];
       this.blackouts = results[2];
-<<<<<<< HEAD
       this.gallery = results[3];
       this.totalSalesDollars = this.appointments.filter(a => a.paid).map(a => a.paid).reduce((a, b) => a + b, 0);
       this.yearSalesDollars = this.appointments.filter(a => moment(a.createdAt.toDate()).isSame(moment(), "y") && a.paid).map(a => a.paid).reduce((a,b) => a + b,0);
       this.totalSalesDollars = this.expenses.filter(e => e.amount).map(e => e.amount).reduce((a, b) => a + b, 0);
       this.yearExpenses = this.expenses.filter(e => moment(e.createdAt).isSame(moment(), "y")).map(e => e.amount).reduce((a,b) => a + b,0);
-=======
-      console.log(results[3]);
-      
-      this.gallery = results[3];
-      this.totalSalesDollars = this.appointments.filter(a => a.paid).map(a => a.paid).reduce((a, b) => a + b, 0);
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       this.buildDays();
     });
   }
@@ -143,11 +113,7 @@ export class AdminComponent implements OnInit {
       }
     });
     this.days = [];
-<<<<<<< HEAD
     for (let index = -5; index <= 15; index++) {
-=======
-    for (let index = 0; index <= 15; index++) {
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       let day: any = {};
       day.day = moment().startOf('day').add(index, "days");
       day.name = moment(day.day).calendar();
@@ -156,7 +122,6 @@ export class AdminComponent implements OnInit {
       for (let index = 0; index <= ((aDay.closeTime - aDay.openTime) * 2); index++) {
         let time: any = {};
         time.time = moment(day.day).add(((aDay.openTime * 60) + (index * 30)), "minutes");
-<<<<<<< HEAD
         time.appointment = this.appointments.find(a => moment(a.appointment.toDate()).isSame(time.time));
         time.isBlackout = this.blackouts.find(b => time.time.isBetween(moment(b.startTime), moment(b.endTime), "m", "[]"));
         day.times.push(time);
@@ -166,15 +131,6 @@ export class AdminComponent implements OnInit {
     }
     this.loading = false;   
     this.setView("appointments"); 
-=======
-        time.appointment = this.appointments.find(a => moment(a.appointment.toDate()).isSame(time.time))
-        day.times.push(time);
-      }
-      day.isBlackout = this.blackouts.some(b => moment(b.day.toDate()).isSame(day.day, "day")) || !aDay.isOpen;
-      this.days.push(day);
-    }
-    this.loading = false;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   }
 
 
@@ -197,7 +153,6 @@ export class AdminComponent implements OnInit {
     document.getElementById("image-picker").click();
   }
 
-<<<<<<< HEAD
   public textThem(appointment): void {
     this._router.navigate(['sms'], {
       queryParams: {
@@ -219,8 +174,6 @@ export class AdminComponent implements OnInit {
     this._adminService.updateImage(image);
   }
 
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public uploadExpenseImage(event, expense: Expense) {
     this.loading = true;
     let file = event.target.files[0];
@@ -239,7 +192,6 @@ export class AdminComponent implements OnInit {
     } else {
       this._adminService.createExpense(expense)
     }
-<<<<<<< HEAD
   }
 
   public setView(view: string): void {
@@ -273,47 +225,11 @@ export class AdminComponent implements OnInit {
     }
   }
 
-=======
-  } 
-
-  public nextView() {
-    let i = this.views.indexOf(this.view) + 1; 
-    i = i % this.views.length;
-    this.view = this.views[i];
-  }
-
-  public setBlackout(day) {
-    this._dialog.open(BlackoutDialog, {data: day}).afterClosed().subscribe(shouldBlackout => {
-      if (shouldBlackout) {
-        let bo = new Blackout();
-        bo.createdAt = new Date();
-        bo.day = day.day.toDate();
-        this._adminService.createBlackout(bo);
-      }
-    })
-  }
-
-
-
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public addAppointment(): void {
     this._appService.bookAppointment(true);
   }
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   public getImage(): void {
     if (!this.loading) {
       document.getElementById("image-input").click();

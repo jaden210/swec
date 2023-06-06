@@ -1,10 +1,6 @@
 import * as functions from "firebase-functions";
 const admin = require("firebase-admin");
-<<<<<<< HEAD
 admin.initializeApp();
-=======
-admin.initializeApp(functions.config().firebase);
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 import * as moment from "moment-timezone";
 // const twilio = require('twilio');
 // const MessagingResponse = twilio.twiml.MessagingResponse;
@@ -20,17 +16,12 @@ function sendMessage(body: string): Promise<any> {
   const client = require('twilio')(accountSid, authToken);
   let db: any = {
     body: body,
-<<<<<<< HEAD
     from: `+14352362993`,
-=======
-    from: '+`+13133492730`',
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     to: `+15599773538`
   }
   return client.messages.create(db);
 }
 
-<<<<<<< HEAD
 
 
 // exports.createCalEvent = functions.https.onRequest((req, res) => {
@@ -52,13 +43,10 @@ function sendMessage(body: string): Promise<any> {
 //   })
 // });
 
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 exports.newAppointmentCreated = functions.firestore
   .document("/appointments/{appointmentId}")
   .onCreate((snapshot: any, context: any) => {
     const appointment = snapshot.data() || {};
-<<<<<<< HEAD
     if (appointment.confirm) {
       return null;
     } else {
@@ -66,11 +54,6 @@ exports.newAppointmentCreated = functions.firestore
       let tBody = `New Appointment Alert! 🙌🙌 \n\n${appointment.name} \n${appointmentDate} \n${appointment.number || ''} \n${appointment.instagram || ''} \nhttps://kokomosprays.com/sms?id=${snapshot.id}`;
       return sendMessage(tBody);
     }
-=======
-    const appointmentDate = moment(appointment.appointment.toDate()).tz("America/Denver").format("dddd, MMMM Do YYYY, h:mm a");
-    let tBody = `New Appointment Alert! 🙌🙌 \n\n${appointment.name} \n${appointmentDate} \n${appointment.number} \nhttps://kokomosprays.com/sms?id=${snapshot.id}`;
-    return sendMessage(tBody);
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
 
     // const nodemailer = require("nodemailer");

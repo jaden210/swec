@@ -50,19 +50,11 @@ export class AdminService {
     return this.db.doc(`gallery/${data.id}`).delete();
   }
   
-<<<<<<< HEAD
   public createBlackout(blackout: Blackout): Promise<any> {
     return this.db
       .collection(`blackouts`)
       .add({ ...blackout });
   }
-=======
-    public createBlackout(blackout: Blackout): Promise<any> {
-      return this.db
-        .collection(`blackouts`)
-        .add({ ...blackout });
-    }
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
   public updateAppointment(appointment: Appointment): Promise<any> {
     return this.db

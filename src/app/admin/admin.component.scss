@@ -2,7 +2,6 @@
   background-color: white;
   width: 600px;
   max-width: calc(100vw - 16px);
-<<<<<<< HEAD
   margin: auto;
   text-align: center;
   padding-bottom: 100px;
@@ -23,10 +22,6 @@
   span {
     margin-left: 8px;
   }
-=======
-  margin: 24px auto;
-  text-align: center;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 }
 
 .contacts {
@@ -46,10 +41,7 @@
   .blackout {
     color: red !important;
     opacity: .54;
-<<<<<<< HEAD
     margin-left: 24px;
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   }
   .block {
     padding: 12px 24px;
@@ -66,10 +58,6 @@
 .appointment {
   min-width: 250px;
   margin-top: 12px;
-<<<<<<< HEAD
-=======
-  margin-left: 12px;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   border: 1px solid;
   padding: 12px;
   border-radius: 8px;
@@ -175,16 +163,9 @@
 
 
 .photos {
-<<<<<<< HEAD
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-=======
-  width: 100vw;
-  display: flex;
-  position: absolute;
-  left: 0;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
   justify-content: center;
   .photo {
     position: relative;
@@ -251,7 +232,6 @@
     }
 
     .img-btn:nth-of-type(4).visible {
-<<<<<<< HEAD
       transform: translate3d(-90px, 0, 0);
     }
 
@@ -263,8 +243,6 @@
     }
 
     .img-btn:nth-of-type(5).visible {
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       transform: translate3d(-45px, 0, 0);
     }
 
@@ -312,7 +290,6 @@
       padding: 8px;
     }
   }
-<<<<<<< HEAD
 }
 
 
@@ -354,6 +331,4 @@
     justify-content: center;
     color: white;
   }
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 }

@@ -22,10 +22,7 @@ import { AboutComponent } from "./about/about.component";
 import { SmsComponent } from "./sms/sms.component";
 import { ContactsComponent } from "./contacts/contacts.component";
 import { GalleryComponent } from "./gallery/gallery.component";
-<<<<<<< HEAD
 import { ContactComponent } from "./contact/contact.component";
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 
 @NgModule({
   declarations: [
@@ -38,10 +35,7 @@ import { ContactComponent } from "./contact/contact.component";
     AboutComponent,
     SmsComponent,
     ContactsComponent,
-<<<<<<< HEAD
     ContactComponent,
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     GalleryComponent
   ],
   imports: [

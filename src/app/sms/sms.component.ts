@@ -1,9 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { ActivatedRoute, Router } from '@angular/router';
-=======
-import { ActivatedRoute } from '@angular/router';
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 import { AppService } from '../app.service';
 import { Appointment } from '../appointment/appointment-sheet.service';
 import * as moment from "moment";
@@ -17,7 +13,6 @@ export class SmsComponent implements OnInit {
 
   appointment: Appointment = new Appointment();
   public smsBody;
-<<<<<<< HEAD
   postBody: string = `Post Tan: 
   1. Avoid moisture until your initial rinse. This means no showers, working out, lotions, or liquid foundations on this skin. Stay in a cool place to avoid any sweating. If you have pets, do not let them lick you! 🐩 
   2. If you got a classic tan rinse in 8-12 hours. If you got a rapid tan rinse in 2-4 hours depending on your desired darkened level. Do not over process. Rinse with lukewarm water and do not use any product/soap. 🚿 You will see the bronzer wash down the drain. Pat yourself dry, don’t rub. 
@@ -70,11 +65,6 @@ export class SmsComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-=======
-
-  constructor(
-    private _route: ActivatedRoute,
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
     private _appService: AppService
   ) { }
 
@@ -83,15 +73,10 @@ export class SmsComponent implements OnInit {
       this._appService.getAppointment(params.params.id).subscribe((appointment: Appointment) => {
         this.appointment = appointment;
         this.appointment.appointment = moment(this.appointment.appointment.toDate()).format("dddd, MMMM Do YYYY, h:mm a");
-<<<<<<< HEAD
-=======
-        this.smsBody = `sms://+1${appointment.number}?&body=Hey%2C%0AJust%20wanted%20to%20let%20you%20know%20that%20I%20received%20your%20appointment%20for%20${appointment.appointment}.%20For%20pre%20tan%20instructions%2C%20see%20my%20site%3A%20https%3A%2F%2Fkokomosprays.com%2Fprep`
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
       });
     });
   }
 
-<<<<<<< HEAD
   public popSMS(index): void {
     let message = this.smsBodies[index];
     if (message.social) {
@@ -118,6 +103,4 @@ export class SmsComponent implements OnInit {
 
 
 
-=======
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 }

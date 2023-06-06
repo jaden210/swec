@@ -39,30 +39,18 @@ export class Appointment {
   createdAt: any;
   appointment: any;
   name: string;
-<<<<<<< HEAD
   number?: string = '';
   ig?: string = '';
   userId?: string;
   confirm?: boolean;
   paid?: number;
   note?: string;
-=======
-  number?: string;
-  ig?: string;
-  userId?: string;
-  confirm?: boolean;
-  paid?: number;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 }
 
 
 export class Blackout {
   createdAt: any;
-<<<<<<< HEAD
   // day: any;
   startTime: any;
   endTime: any;
-=======
-  day: any;
->>>>>>> 575ff04f8f7e4600b3c6b65a2b1d68d758b779cf
 }
