@@ -40,7 +40,6 @@ export class Appointment {
   appointment: any;
   name: string;
   number?: string = '';
-  ig?: string = '';
   userId?: string;
   confirm?: boolean;
   paid?: number;

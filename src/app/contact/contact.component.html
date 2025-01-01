@@ -1,14 +1,12 @@
 <app-toolbar></app-toolbar>
 <div class="background" *ngIf="appointments.length > 0; sorry">
   <div class="name">{{appointments[0]?.name}}</div>
-  <div class="ig" *ngIf="ig">instagram: {{ig}}</div>
   <div class="ig" *ngIf="appointments[0]?.number">phone: {{appointments[0]?.number}}</div>
   <div class="stat"> 
     <div class="s">{{appointments.length}} visit{{appointments.length !== 1 ? 's' : ''}}</div>
     <div class="s">{{totalSales | currency}}</div>
   </div>
   <button class="button" mat-raised-button color="primary" (click)="contact()">text {{appointments[0]?.name}}</button>
-  <button class="button" mat-raised-button color="primary" *ngIf="ig" (click)="contact(true)">message {{appointments[0]?.name}} in Instagram</button>
   <div class="header">Appointments</div>
   <ng-container *ngFor="let appointment of appointments; let i = index">
     <div class="appointment">

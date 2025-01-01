@@ -17,7 +17,7 @@ function sendMessage(body: string): Promise<any> {
   let db: any = {
     body: body,
     from: `+14352362993`,
-    to: `+15599773538`
+    to: `+14356322009`
   }
   return client.messages.create(db);
 }
@@ -51,7 +51,7 @@ exports.newAppointmentCreated = functions.firestore
       return null;
     } else {
       const appointmentDate = moment(appointment.appointment.toDate()).tz("America/Denver").format("dddd, MMMM Do YYYY, h:mm a");
-      let tBody = `New Appointment Alert! 🙌🙌 \n\n${appointment.name} \n${appointmentDate} \n${appointment.number || ''} \n${appointment.instagram || ''} \nhttps://kokomosprays.com/sms?id=${snapshot.id}`;
+      let tBody = `New Appointment Alert! 🙌🙌 \n\n${appointment.name} \n${appointmentDate} \n${appointment.number || ''}  \nhttps://Southwesteandc.com/sms?id=${snapshot.id}`;
       return sendMessage(tBody);
     }
 
@@ -60,12 +60,12 @@ exports.newAppointmentCreated = functions.firestore
     // const mailTransport = nodemailer.createTransport({
     //   service: "gmail",
     //   auth: {
-    //     user: "kokomosprays@gmail.com",
+    //     user: "swecsprays@gmail.com",
     //     pass: "getaspraytan",
     //   },
     // });
     // const mailOptions: any = {
-    //   from: '"Kokomo Spray Tans" <kokomosprays@gmail.com>',
+    //   from: '"swec Spray Tans" <swecsprays@gmail.com>',
     //   to: "madisonkm613@gmail.com",
     // };
     // mailOptions.subject = "You booked a new Appointment!";
@@ -74,13 +74,13 @@ exports.newAppointmentCreated = functions.firestore
     // ${appointment.name}<br>
     // ${appointmentDate}<br>
     // ${appointment.number}<br>
-    // <a href="https://kokomosprays.com/sms?id=${snapshot.id}">Send them a Confirmation Text</a><br/><br>
+    // <a href="https://swecsprays.com/sms?id=${snapshot.id}">Send them a Confirmation Text</a><br/><br>
  
 
 
     // See all your appointments here:<br/>
-    // <a href='https://kokomosprays.com/admin'>appointments</a><br/><br>
-    // <a>kokomosprays@gmail.com</a><br/>
+    // <a href='https://swecsprays.com/admin'>appointments</a><br/><br>
+    // <a>swecsprays@gmail.com</a><br/>
     // `;
     // mailOptions.html = text;
     // return mailTransport
@@ -103,13 +103,13 @@ exports.newContactCreated = functions.firestore
     const mailTransport = nodemailer.createTransport({
       service: "gmail",
       auth: {
-        user: "kokomosprays@gmail.com",
-        pass: "getaspraytan",
+        user: "jaden210@gmail.com",
+        pass: "FordGT-40",
       },
     });
     const mailOptions: any = {
-      from: '"Kokomo Spray Tans" <kokomosprays@gmail.com>',
-      to: "madisonkm613@gmail.com",
+      from: '"SouthWestEandC" <Southwesteandc@gmail.com>',
+      to: "Southwesteandc@gmail.com",
     };
     mailOptions.subject = "You have a new contact!";
     const text = `Woah, nice work!<br/><br/>
@@ -117,10 +117,10 @@ exports.newContactCreated = functions.firestore
     ${contact.name || "they didn't provide their name"}<br>
     ${contact.number}<br>
     ${contact.ig}<br>
-    <a href="https://kokomosprays.com/contacts">Go to your contact list</a><br/><br>
+    <a href="https://Southwesteandc.com/contacts">Go to your contact list</a><br/><br>
  
-    <a href='https://kokomosprays.com/admin'>Go yo your Admin Console</a><br/><br>
-    <a>kokomosprays@gmail.com</a><br/>
+    <a href='https://Southwesteandc.com/admin'>Go yo your Admin Console</a><br/><br>
+    <a>Southwesteandc@gmail.com</a><br/>
     `;
     mailOptions.html = text;
     return mailTransport

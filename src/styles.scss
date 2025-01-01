@@ -50,46 +50,46 @@ $md-c-black: (
     100: #212121,
     200: #212121,
     300: #212121,
-    400: #212121,
-    500: #212121,
+    400: #2A170C,
+    500: #2A170C,
     600: #212121,
     700: #212121,
     800: #212121,
     900: #212121,
   contrast: (
-    50: "#fde9ed",
-    100: "#e6cdd5",
-    200: "#cdaeba",
-    300: "#b58e9c",
-    400: "#a27586",
-    500: "#905c71",
-    600: "#825367",
-    700: "#71475a",
-    800: "#5f3c4e",
-    900: "#4e2f41"
+    50: "#FEA01F",
+    100: "#FEA01F",
+    200: "#FEA01F",
+    300: "#FEA01F",
+    400: "#FEA01F",
+    500: "#FEA01F",
+    600: "#FEA01F",
+    700: "#FEA01F",
+    800: "#FEA01F",
+    900: "#FEA01F"
   )
 );
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$kokomo-primary: mat.define-palette($md-c-black, 500);
-$kokomo-accent: mat.define-palette($md-c-pink, 500);
+$swec-primary: mat.define-palette($md-c-black, 500);
+$swec-accent: mat.define-palette($md-c-pink, 500);
 
 // The warn palette is optional (defaults to red).
-$kokomo-warn: mat.define-palette(mat.$red-palette);
+$swec-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$kokomo-theme: mat.define-light-theme(
-  $kokomo-primary,
-  $kokomo-accent,
-  $kokomo-warn
+$swec-theme: mat.define-light-theme(
+  $swec-primary,
+  $swec-accent,
+  $swec-warn
 );
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include mat.all-component-themes($kokomo-theme);
+@include mat.all-component-themes($swec-theme);
 
 /* You can add global styles to this file, and also import other style files */
 
@@ -152,4 +152,19 @@ button {
 .full-height {
   height: 95vh;
   max-height: 95vh !important;
+}
+
+
+.qxCTlb {
+  z-index: 1;
+  width: 250px;
+  max-width: calc(100vw - 24px);
+  min-height: 64px !important;
+  color: #ffffff !important;
+}
+
+@media screen and (max-width: 614px) {
+  .hur54b {
+    padding: 8px !important;
+  }
 }

@@ -107,18 +107,13 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
     appointment.createdAt = new Date();
     appointment.name = this.name.trim();
     appointment.appointment = this.time.toDate();
-    appointment.number = this.number ? this.number.match( numberPattern ).join([]) : null;
-    appointment.ig = this.ig || null;
+    appointment.number = (this.number && this.number.match(numberPattern)) ? this.number.match( numberPattern ).join([]) : null;
     this._appointmentService.createAppointment(appointment).then(() => {
       this.loading = false;
       this.view = 'done';
       if (this.isAdmin) this.close();
-      this._appService.addToContactList(appointment.number, appointment.name, appointment.ig)
+      this._appService.addToContactList(appointment.number, appointment.name)
     })
-  }
-
-  public message(): void {
-    window.open("https://www.instagram.com/kokomospraytans/");
   }
 
   public close() {
@@ -129,7 +124,7 @@ export class AppointmentSheetComponent implements OnInit, OnDestroy {
   }
 
   public addToGoogleCalendar() {
-    window.open(`https://calendar.google.com/calendar/r/eventedit?text=Kokomo+Spray+Tan+Appointment&dates=${moment(this.time).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(this.time).add(30, 'minutes').toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=https://kokomosprays.com&location=1528N+Overland+Trails+Drive+-+Washington,+UT+84780`);
+    window.open(`https://calendar.google.com/calendar/r/eventedit?text=New+Appointment&dates=${moment(this.time).toISOString().replace(/-|:|\.\d\d\d/g,"")}/${moment(this.time).add(30, 'minutes').toISOString().replace(/-|:|\.\d\d\d/g,"")}&details=https://southwesteandc.com&location=1528N+Overland+Trails+Drive+-+Washington,+UT+84780`);
   }
 
   public nav() {

@@ -42,23 +42,25 @@
   border-radius: 8px;
   width: 100%;
   justify-content: center;
-  .self-block {
-    width: 250px;
-    border-collapse: collapse;
-    border-radius: 4px;
-    border-spacing: 0;
-    margin: 4px;
-    background: white;
-    border: 1px solid #e0e0e0;
-    img {
-      width: 100%;
-      object-fit: cover;
-    }
-    .info {
-      text-align: center;
-      padding: 8px;
-      font-family: "lato" !important;
-      color: #2a3755;
-    }
+}
+.team-block {
+  width: 250px;
+  border-collapse: collapse;
+  border-radius: 4px;
+  border-spacing: 0;
+  margin: 4px;
+  background: white;
+  border: 1px solid #e0e0e0;
+  img {
+    width: 100%;
+    object-fit: cover;
+    max-height: 250px;
+  }
+  .info {
+    text-align: center;
+    padding: 8px;
+    font-family: "lato" !important;
+    color: #2a3755;
   }
 }
+

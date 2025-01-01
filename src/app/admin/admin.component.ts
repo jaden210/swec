@@ -46,7 +46,7 @@ export class AdminComponent implements OnInit {
   public days;
   public loading: boolean = false;
   public aApp = null;
-  public view: string;
+  public view: string = "appointments";
   public views = [
     "appointments",
     "expenses",
@@ -130,7 +130,7 @@ export class AdminComponent implements OnInit {
       this.days.push(day);
     }
     this.loading = false;   
-    this.setView("appointments"); 
+    // this.setView("appointments"); 
   }
 
 

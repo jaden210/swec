@@ -13,7 +13,6 @@ export class ContactComponent implements OnInit {
 
   appointments: Appointment[] = [];
   totalSales: number;
-  ig: string;
 
 
   constructor(
@@ -28,17 +27,12 @@ export class ContactComponent implements OnInit {
       this._appService.getAppointmentsByName(contactName).subscribe((appointments: Appointment[]) => {
         this.appointments = appointments;
         this.totalSales = appointments.filter(a => a.paid).map(a => a.paid).reduce((a, b) => a + b, 0);
-        this.ig = appointments.filter(a => a.ig)[0]?.ig || null;
       })
     });
   }
 
-  public contact(social: boolean = false) {
-    if (social) {
-      window.open(`https://instagram.com/${this.ig}`);
-    } else {
-      window.open(`sms://+1${this.appointments[0].number}?&body=`);
-    }
+  public contact() {
+    window.open(`sms://+1${this.appointments[0].number}?&body=`);
   }
 
   

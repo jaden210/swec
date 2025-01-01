@@ -23,6 +23,7 @@ import { SmsComponent } from "./sms/sms.component";
 import { ContactsComponent } from "./contacts/contacts.component";
 import { GalleryComponent } from "./gallery/gallery.component";
 import { ContactComponent } from "./contact/contact.component";
+import { LoadScriptDirective } from './load-script.directive';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ContactComponent } from "./contact/contact.component";
     SmsComponent,
     ContactsComponent,
     ContactComponent,
-    GalleryComponent
+    GalleryComponent,
+    LoadScriptDirective
   ],
   imports: [
     BrowserModule,

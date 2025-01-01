@@ -1,12 +1,12 @@
 export const environment = {
   production: true,
   firebaseConfig: {
-    apiKey: "AIzaSyAqrWaakJ2_HwAAPJSa0650t-mmVojw7Qk",
-    authDomain: "kokomo-sprays.firebaseapp.com",
-    projectId: "kokomo-sprays",
-    storageBucket: "kokomo-sprays.appspot.com",
-    messagingSenderId: "284047685625",
-    appId: "1:284047685625:web:c6d2ca2296681349cb2f28",
-    measurementId: "G-14BRBT9TZF"
+    apiKey: "AIzaSyBHzfLiCSm4aPq5yShp5oHRaA2_zaVvhLE",
+    authDomain: "mitch-swec.firebaseapp.com",
+    projectId: "mitch-swec",
+    storageBucket: "mitch-swec.appspot.com",
+    messagingSenderId: "703360231098",
+    appId: "1:703360231098:web:a2eb3d90d9cbb9057c8483",
+    measurementId: "G-3VN3GZWCHN"
   }
 };

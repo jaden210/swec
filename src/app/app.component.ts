@@ -17,11 +17,11 @@ export class AppComponent implements OnInit {
     ) {}
 
   ngOnInit() {
-    this._titleService.setTitle("Kokomo Spray Tans");
+    this._titleService.setTitle("swec Spray Tans");
     this._metaTagService.addTags([
-      { name: 'keywords', content: 'Kokomo Spray Tans' },
+      { name: 'keywords', content: 'swec Spray Tans' },
       { name: 'robots', content: 'index, follow' },
-      { name: 'author', content: 'Kokomo Spray Tans' },
+      { name: 'author', content: 'swec Spray Tans' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'date', content: '2021-06-13', scheme: 'YYYY-MM-DD' },
       { charset: 'UTF-8' }

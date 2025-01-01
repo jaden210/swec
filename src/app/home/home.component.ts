@@ -63,3 +63,4 @@ export class HomeComponent implements OnInit {
     this._appService.bookAppointment();
   }
 }
+

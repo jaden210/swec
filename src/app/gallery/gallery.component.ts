@@ -18,10 +18,10 @@ export class GalleryComponent {
     private _db: AngularFirestore,
     private _appService: AppService
     ) {
-      this.titleService.setTitle("Kokomo Spray Tans | Gallery");
+      this.titleService.setTitle("swec Spray Tans | Gallery");
       this.metaTagService.updateTag(
         { name: 'description', content: `
-        Kokomo Spray Tans gives you the perfect glow for any occasion! Check out all these satisfied customers tans and book your appointment today` }
+        swec Spray Tans gives you the perfect glow for any occasion! Check out all these satisfied customers tans and book your appointment today` }
       );
 
     }

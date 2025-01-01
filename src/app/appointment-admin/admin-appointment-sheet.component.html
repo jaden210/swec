@@ -25,7 +25,7 @@
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>instagram handle</mat-label>
-        <input matInput type="text" placeholder="kokomosprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
+        <input matInput type="text" placeholder="swecsprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
       </mat-form-field>
       <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" (click)="buildDays()" [disabled]="!name || (!ig && !number) || (number && number.length < 10)">Next</button>
     </ng-container>

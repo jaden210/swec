@@ -4,42 +4,37 @@
 <div class="background" [@fadeIn]>
   <div class="hero-cont">
     <!-- <img class="hero-img" src="/assets/heroImg.png"> -->
-    <h1 class="hero-text">YOUR NEW GLOW TO DESTINATION.</h1>
-    <div class="hero-info">A Spray Tan Your Skin Will Love!</div>
-    <button class="hero-btn" color="primary" (click)="book()" mat-flat-button>Book now</button>
+    <h1 class="hero-text">POWERING YOUR FUTURE, BUILDING YOUR DREAMS.</h1>
+    <!-- <div class="hero-info">A Spray Tan Your Skin Will Love!</div> -->
+    <button class="hero-btn" color="primary" (click)="book()" mat-flat-button>Schedule an appointment</button>
+    <!-- <div appLoadScript></div> -->
   </div>
   <div class="photos">
     <div class="photo" *ngFor="let img of gallery; index as i;">
       <img *ngIf="!img.type" [id]="'img' + i" [src]="img.imageUrl" [ngStyle]="{objectFit: img.objectFit,transform: 'rotate(' + (img.rotate * 90 || '0') + 'deg)'}">
     </div>
   </div>
-  <div class="cta-cont"><button class="ctas-btn" color="primary" routerLink="/gallery" mat-flat-button>See More Great Tans</button></div>
+  <div class="cta-cont"><button class="ctas-btn" color="primary" routerLink="/gallery" mat-flat-button>See some of our work</button></div>
   <!-- <div class="m-img">
     <img src="./assets/sampleSalon.jpeg">
   </div> -->
   <div class="t-body">
-    <h4 class="t-header">The feeling of a good tan.</h4>
-    <p>Are you looking for a gorgeous, sun-kissed glow without the harmful effects of the sun? Look no further than Kokomo Spray Tans!
-      <br><br>At Kokomo Spray Tans, we offer a variety of spray tan options to suit your individual skin tone and desired level of tan.vWe use only the highest quality products to ensure a natural, streak-free tan that will last for weeks.
-      <br><br>In addition to our top-notch spray tans, we also offer a comfortable and welcoming atmosphere. The comfy and relaxing setting will have you feeling relaxed and pampered from the moment you step through my doors.
-      <br><br>Don't spend another day pale and pasty – come to Kokomo Spray Tans and give your skin the beautiful, golden glow it deserves. Book your appointment today and get ready to shine!
+    <h4 class="t-header">Powering Your World, Building Your Future</h4>
+    <p>Are you looking for reliable electrical solutions and top-quality construction services? Look no further than South West Electric and Construction!
+      <br><br>At South West Electric and Construction, we offer a wide range of electrical and construction services to meet your residential and commercial needs. From wiring and installations to renovations and new builds, our team of skilled professionals delivers excellence in every project.
+      <br><br>We pride ourselves on our commitment to safety, quality workmanship, and customer satisfaction. Our experienced technicians and builders use state-of-the-art equipment and adhere to the highest industry standards to ensure your project is completed efficiently and effectively.
+      <br><br>Whether you need a simple electrical repair or a complete construction overhaul, South West Electric and Construction has you covered. Contact us today to discuss your project and experience the power of professional service!
     </p>
     </div>
-    <div class="cta-cont"><button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Book now</button></div>
-    <div class="banner">
-      <div class="b-text">Sign up for updates and offers by entering your phone number</div>
-      <div class="together">
-        <mat-form-field>
-          <mat-label>phone number</mat-label>
-          <input #pnumber matInput (keyup.enter)="signUpContacts(pnumber.value)" placeholder="8014753854">
-        </mat-form-field>
-        <button mat-raised-button color="primary" (click)="signUpContacts(pnumber.value)">Sign Up</button>
-      </div>
+    <div class="cta-cont">
+      <button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Schedule an appointment</button>
     </div>
     <div class="map-cont">
       <div class="title">Find us!</div>
-      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52162.24566272514!2d-113.49921764461786!3d37.10512502829298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80ca593d82ec6ee5%3A0xc893eec35ea3b32a!2sKokomo%20Spray%20Tans!5e0!3m2!1sen!2sus!4v1623350385096!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52162.24566272514!2d-113.49921764461786!3d37.10512502829298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80ca593d82ec6ee5%3A0xc893eec35ea3b32a!2sswec%20Spray%20Tans!5e0!3m2!1sen!2sus!4v1623350385096!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </div>
   </div>
-  <div class="cta-cont"><button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Book now</button></div>
+  <div class="cta-cont">
+    <button class="cta-btn" color="primary" (click)="book()" mat-flat-button>Schedule an appointment</button>
+  </div>
 <footer></footer>

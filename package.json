@@ -1,6 +1,6 @@
 {
-  "name": "kokomo",
-  "version": "1.0.4",
+  "name": "swec",
+  "version": "1.0.5",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -26,6 +26,7 @@
     "electron": "^4.1.0",
     "firebase": "^7.15.5",
     "moment": "^2.29.1",
+    "recordrtc": "^5.6.2",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"

@@ -1,6 +1,6 @@
 <ng-container>
 <div class="toolbar">
-  <div class="title">Book an Appointment</div>
+  <div class="title">Schedule an Appointment</div>
   <div style="flex:1"></div>
   <button (click)="view = 'info'" *ngIf="view != 'info'" class="flat-btn">back</button>
   <button (click)="close()" class="post-btn">close</button>
@@ -9,9 +9,9 @@
   <mat-progress-bar mode="indeterminate" *ngIf="loading"></mat-progress-bar>
   <div class="view" [ngSwitch]="view">
     <ng-container *ngSwitchCase="'info'">
-      <div class="tab-title">Contact me to book an appointment</div>
-      <a href="tel:+1-559-977-3538" target="_blank"><button mat-raised-button style="color:white; margin:12px 0; min-width: 300px" color="primary">Call / Text</button></a>
-      <button mat-raised-button (click)="message()" style="color:white; margin:12px 0; min-width: 300px" color="primary">Message On Instagram</button>
+      <div class="tab-title">Contact me to schedule an appointment</div>
+      <a href="tel:+1-435-632-2009" target="_blank"><button mat-raised-button style="color:white; margin:12px 0; min-width: 300px" color="primary">Call / Text</button></a>
+      <!-- <button mat-raised-button (click)="message()" style="color:white; margin:12px 0; min-width: 300px" color="primary">Message On Instagram</button> -->
       <div class="tab-title">{{!isAdmin ? 'Or book an appointment online:' : 'Enter your clients info'}}</div>
       <mat-form-field appearance="outline" class="bt-btn">
         <mat-label>name</mat-label>
@@ -20,10 +20,6 @@
       <mat-form-field appearance="outline" class="bt-btn">
         <mat-label>phone number</mat-label>
         <input matInput type="tel" placeholder="8018458545" [(ngModel)]="number" (keyup.enter)="buildDays()">
-      </mat-form-field>
-      <mat-form-field appearance="outline" class="bt-btn">
-        <mat-label>instagram handle</mat-label>
-        <input matInput type="text" placeholder="kokomosprays" [(ngModel)]="ig" (keyup.enter)="buildDays()">
       </mat-form-field>
       <button mat-raised-button color="primary" style="color:#ffffff; margin-top: 12px; width: 250px" class="bt-btn" (click)="buildDays()" [disabled]="!name || (!ig && !number) || (number && number.length < 10)">Next</button>
     </ng-container>
@@ -79,5 +75,5 @@
   <div class="row" >
     
   </div>
-  <!-- <iframe src="https://app.cal.com/kokomo" frameborder="0" allowfullscreen></iframe> -->
+  <!-- <iframe src="https://app.cal.com/swec" frameborder="0" allowfullscreen></iframe> -->
 </ng-container>
